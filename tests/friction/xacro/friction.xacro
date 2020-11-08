@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<sdf version="1.7" 
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="cube" params="name mass side color *pose *friction">
+    <model name="${name}">
+      <xacro:insert_block name="pose" />
+      <link name="${name}_link">
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>${mass}</mass>
+          <inertia>
+            <ixx>${1/6 * mass * side}</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>${1/6 * mass * side}</iyy>
+            <iyz>0</iyz>
+            <izz>${1/6 * mass * side}</izz>
+          </inertia>
+        </inertial>
+        <collision name="${name}_collision">
+          <pose relative_to="${name}_link">0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>${side} ${side} ${side}</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <xacro:insert_block name="friction" />
+          </surface>
+        </collision>
+        <visual name="${name}_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>${side} ${side} ${side}</size>
+            </box>
+          </geometry>
+          <material>
+            <xacro:if value="${color=='green'}">
+              <ambient>0 1 0 1</ambient>
+              <diffuse>0 1 0 1</diffuse>
+              <specular>0.1 0.1 0.1 1 1</specular>
+            </xacro:if>
+            <xacro:if value="${color=='red'}">
+              <ambient>1 0 0 1</ambient>
+              <diffuse>1 0 0 1</diffuse>
+              <specular>0.1 0.1 0.1 1 1</specular>
+            </xacro:if>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay />
+      </link>
+    </model>
+  </xacro:macro>
+
+  <!-- static plane -->
+  <xacro:macro name="static_plane" params="name length width *pose">
+    <model name="${name}">
+      <xacro:insert_block name="pose" />
+      <static>1</static>
+      <link name="${name}_link">
+        <pose>0 0 0 0 0 0</pose>
+        <collision name="${name}_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>${length} ${width} 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>50</max_contacts>
+          <surface>
+            <friction>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="${name}_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>${length} ${width} 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient> .3 .3 .3  1.0</ambient>
+            <diffuse> .7 .7 .7  1.0</diffuse>
+            <specular> 0.01 0.01 0.01 1.000000 1.500000</specular>
+          </material>
+        </visual>
+        <gravity>0</gravity>
+        <velocity_decay/>
+      </link>
+    </model>
+  </xacro:macro>
+
+  <!-- A ground plane -->
+  <xacro:macro name="ground_plane">
+    <xacro:property name="length" value="100"/>
+    <xacro:property name="width" value="100"/>
+    <model name='ground_plane'>
+      <static>1</static>
+      <pose>0 0 0 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>${length} ${width}</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>${length} ${width}</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </xacro:macro>
+
+
+  <!-- A global light source -->
+  <xacro:macro name="sun">
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+  </xacro:macro>
+
+</sdf>

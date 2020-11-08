@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<sdf version="1.7" 
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="friction.xacro"/>
+
+  <xacro:sun/>
+  <xacro:ground_plane/>
+
+  <xacro:static_plane name="ramp" length="10" width="10">
+    <pose>0 0 1 0 ${pi/16} 0 </pose>
+  </xacro:static_plane>
+
+  <!-- nominal cube -->
+  <xacro:cube name="cube" mass="1" side="0.2" color="red">
+    <pose relative_to="ramp">0 2.0 0.11 0 0 0</pose>
+    <friction />
+  </xacro:cube>
+
+  <!-- cubue with only mu -->
+  <xacro:cube name="cube_mu" mass="1" side="0.2" color="red">
+    <pose relative_to="ramp">0 1.5 0.11 0 0 0</pose>
+    <friction>
+      <ode>
+        <mu>1</mu>
+        <mu2>0</mu2>
+      </ode>
+    </friction>
+  </xacro:cube>
+
+  <!-- cube with only mu2 -->
+  <xacro:cube name="cube_mu2" mass="1" side="0.2" color="green">
+    <pose relative_to="ramp">0 1.0 0.11 0 0 0</pose>
+    <friction>
+      <ode>
+        <mu>0</mu>
+        <mu2>1</mu2>
+      </ode>
+    </friction>
+  </xacro:cube>
+
+  <!-- cube with mu fdir x-->
+  <xacro:cube name="cube_mu_fdir_x" mass="1" side="0.2" color="red">
+    <pose relative_to="ramp">0 0.5 0.11 0 0 0</pose>
+    <friction>
+      <ode>
+        <mu>1</mu>
+        <mu2>0</mu2>
+        <fdir1>1 0 0</fdir1>
+      </ode>
+    </friction>
+  </xacro:cube>
+
+  <!-- cube with mu fdir y-->
+  <xacro:cube name="cube_mu_fdir_y" mass="1" side="0.2" color="green">
+    <pose relative_to="ramp">0 0 0.11 0 0 0</pose>
+    <friction>
+      <ode>
+        <mu>1</mu>
+        <mu2>0</mu2>
+        <fdir1>0 1 0</fdir1>
+      </ode>
+    </friction>
+  </xacro:cube>
+
+  <!-- cube with mu fdir z-->
+  <xacro:cube name="cube_mu_fdir_z" mass="1" side="0.2" color="green">
+    <pose relative_to="ramp">0 -0.5 0.11 0 0 0</pose>
+    <friction>
+      <ode>
+        <mu>1</mu>
+        <mu2>0</mu2>
+        <fdir1>0 0 1</fdir1>
+      </ode>
+    </friction>
+  </xacro:cube>
+
+  <!-- cube with mu fdir rotated-->
+  <xacro:cube name="cube_mu_fdir_rot" mass="1" side="0.2" color="green">
+    <pose relative_to="ramp">0 -1.0 0.11 0 ${pi/2} 0</pose>
+    <friction>
+      <ode>
+        <mu>1</mu>
+        <mu2>0</mu2>
+        <fdir1>1 0 0</fdir1>
+      </ode>
+    </friction>
+  </xacro:cube>
+
+
+
+  <!-- cube rotated in x -->
+  <xacro:cube name="cube_mu_x_rot" mass="1" side="0.2" color="red">
+    <pose relative_to="ramp">0 -1.5 0.11 ${pi/2} 0 0</pose>
+    <friction>
+      <ode>
+        <mu>1</mu>
+        <!-- <mu2>1</mu2> -->
+      </ode>
+    </friction>
+  </xacro:cube>
+
+  <!-- cube rotated in x and y -->
+  <xacro:cube name="cube_mu_xy_rot" mass="1" side="0.2" color="red">
+    <pose relative_to="ramp">0 -2.0 0.11 ${pi/2} ${pi/2} 0</pose>
+    <friction>
+      <ode>
+        <mu>1</mu>
+        <!-- <mu2>1</mu2> -->
+      </ode>
+    </friction>
+  </xacro:cube>
+</sdf>
