@@ -1,0 +1,45 @@
+<sdf version="1.7" 
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="wheel.xacro" />
+
+  <xacro:sun/>
+  <xacro:ground_plane/>
+
+  <xacro:static_plane name="ramp" length="10" width="10">
+    <pose>0 0 1 0 ${pi/16} 0</pose>
+  </xacro:static_plane>
+
+  <xacro:single_wheel name="wheel" mass="1" length=".5" radius="1" color="1 1 0 1">
+    <pose relative_to="ramp">0 0 0 0 0 0</pose>
+    <dynamics>
+    </dynamics>
+  </xacro:single_wheel>
+
+  <xacro:single_wheel name="wheel_damping" mass="1" length=".5" radius="1" color="0 1 1 1">
+    <pose relative_to="ramp">0 1 0 0 0 0</pose>
+    <dynamics>
+      <damping>1</damping>
+      <friction>0</friction>
+    </dynamics>
+  </xacro:single_wheel>
+
+  <xacro:single_wheel name="wheel_friction" mass="1" length=".5" radius="1" color="1 0 1 1">
+    <pose relative_to="ramp">0 2 0 0 0 0</pose>
+    <dynamics>
+      <damping>0</damping>
+      <friction>1</friction>
+    </dynamics>
+  </xacro:single_wheel>
+
+  <xacro:single_wheel name="wheel_spring" mass="1" length=".5" radius="1" color="0 1 0 1">
+    <pose relative_to="ramp">0 3 0 0 0 0</pose>
+    <dynamics>
+      <damping>0</damping>
+      <friction>0</friction>
+      <spring_reference>${pi}</spring_reference>
+      <spring_stiffness>1</spring_stiffness>
+    </dynamics>
+  </xacro:single_wheel>
+
+</sdf>
