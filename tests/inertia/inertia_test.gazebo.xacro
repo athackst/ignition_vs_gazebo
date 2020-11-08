@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<sdf version='1.7' 
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <world name='default'>
+
+    <xacro:include filename="xacro/gui.xacro"/>
+    <xacro:gazebo_gui camera_pose="-2 0 3 0 0.5 0" />
+
+    <xacro:include filename="xacro/inertia_test.xacro" />
+
+  </world>
+</sdf>

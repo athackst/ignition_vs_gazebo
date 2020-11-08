@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<sdf version="1.7"
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="inertias.xacro" />
+
+  <xacro:sun/>
+  <xacro:ground_plane/>
+
+  <xacro:static_plane name="ramp" length="10" width="10">
+    <pose>0 0 1 0 ${pi/16} 0</pose>
+  </xacro:static_plane>
+
+  <xacro:cylindrical_shell name="shell_cylinder" mass="1" length="0.2" radius="0.1">
+    <pose relative_to="ramp">0 -1 0.11 ${pi/2} 0 0</pose>
+  </xacro:cylindrical_shell>
+
+  <xacro:solid_cylindar name="solid_cylinder" mass="1" length="0.2" radius="0.1">
+    <pose relative_to="ramp">0 -0.5 0.11 ${pi/2} 0 0</pose>
+  </xacro:solid_cylindar>
+
+  <xacro:spherical_shell name="shell_sphere" mass="1" radius="0.1">
+    <pose relative_to="ramp">0 0 0.11 0 0 0</pose>
+  </xacro:spherical_shell>
+
+  <xacro:solid_sphere name="solid_sphere" mass="1" radius="0.1">
+    <pose relative_to="ramp">0 0.5 0.11 0 0 0</pose>
+  </xacro:solid_sphere>
+
+  <xacro:cube name="cube" mass="1" side="0.2">
+    <pose relative_to="ramp">0 1 0.11 0 0 0</pose>
+  </xacro:cube>
+
+</sdf>
