@@ -1,0 +1,251 @@
+<?xml version="1.0" ?>
+<%= "<!-- this file was generated using embedded ruby -->" %>
+<sdf version='1.7'>
+  <world name='lessons'>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics name='1ms' type='ignored'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <plugin name='ignition::gazebo::systems::Physics' filename='libignition-gazebo-physics-system.so'/>
+    <plugin name='ignition::gazebo::systems::UserCommands' filename='libignition-gazebo-user-commands-system.so'/>
+    <plugin name='ignition::gazebo::systems::SceneBroadcaster' filename='libignition-gazebo-scene-broadcaster-system.so'/>
+    <gui fullscreen='0'>
+      <plugin name='3D View' filename='GzScene3D'>
+        <ignition-gui>
+          <title>3D View</title>
+          <property type='bool' key='showTitleBar'>false</property>
+          <property type="string" key="state">docked</property>
+        </ignition-gui>
+        <engine>ogre</engine>
+        <scene>scene</scene>
+        <ambient_light>0.4 0.4 0.4</ambient_light>
+        <background_color>0.8 0.8 0.8</background_color>
+        <camera_pose>0 40 80 0 1.570796 0</camera_pose>
+      </plugin>
+      <plugin name='World control' filename='WorldControl'>
+        <ignition-gui>
+          <title>World control</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="bool" key="resizable">false</property>
+          <property type="double" key="height">72</property>
+          <property type="double" key="width">121</property>
+          <property type="double" key="z">1</property>
+          <property type="string" key="state">floating</property>
+          <anchors target="3D View">
+            <line own="left" target="left"/>
+            <line own="bottom" target="bottom"/>
+          </anchors>
+        </ignition-gui>
+        <play_pause>true</play_pause>
+        <step>true</step>
+        <start_paused>true</start_paused>
+        <service>/world/lessons/control</service>
+        <stats_topic>/world/lessons/stats</stats_topic>
+      </plugin>
+      <plugin name='World stats' filename='WorldStats'>
+        <ignition-gui>
+          <title>World stats</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="bool" key="resizable">false</property>
+          <property type="double" key="height">110</property>
+          <property type="double" key="width">290</property>
+          <property type="double" key="z">1</property>
+
+          <property type="string" key="state">floating</property>
+          <anchors target="3D View">
+            <line own="right" target="right"/>
+            <line own="bottom" target="bottom"/>
+          </anchors>
+        </ignition-gui>
+        <sim_time>true</sim_time>
+        <real_time>true</real_time>
+        <real_time_factor>true</real_time_factor>
+        <iterations>true</iterations>
+        <topic>/world/lessons/stats</topic>
+      </plugin>
+      <plugin name='Entity tree' filename='EntityTree'>
+        <ignition-gui>
+          <title>Entity Tree</title>
+          <property type="bool" key="showTitleBar">true</property>
+          <property type="string" key="state">docked</property>
+        </ignition-gui>
+      </plugin>
+      <plugin name='Component inspector' filename='ComponentInspector'/>
+    </gui>
+
+    <model name='groundplane'>
+      <static>1</static>
+      <pose>0 0 0 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>1 1</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <contact/>
+          </surface>
+        </collision>
+      </link>
+    </model>
+
+<%
+  # Test cone friction model
+  # set equal friction coefficients, but use default directions
+  require 'matrix'
+  def a_to_s(v)
+    Array(v).join(" ")
+  end
+
+  # box dimensions
+  dx = 0.5
+  dy = dx
+  dz = 0.2
+
+  box = {}
+  box[:size] = Vector[dx, dy, dz]
+  box[:mass] = 1
+  box[:ixx] = box[:mass] / 12.0 * (dy**2 + dz**2)
+  box[:iyy] = box[:mass] / 12.0 * (dz**2 + dx**2)
+  box[:izz] = box[:mass] / 12.0 * (dx**2 + dy**2)
+
+  box_count = 32
+  box_angles = 2 * Math::PI * Vector[*(0..box_count-1)] / box_count
+
+  test_set = [
+    { :name => "boxes",
+      :color => "0 0 1 1",
+      :mu => "0.05",
+      :mu2 => "0.05"
+    },
+    { :name => "boxes_mu",
+      :color => "0 1 0 1",
+      :mu => "0.1",
+      :mu2 => "0.05"
+    },
+    { :name => "boxes_mu2",
+      :color => "1 0 0 1",
+      :mu => "0.1",
+      :mu2 => "0.5"
+    }
+  ]
+  test_set.each_with_index do |test, h|
+    color = test[:color]
+    mu = test[:mu]
+    mu2 = test[:mu2]
+    radius = 9
+    box_angles.each_with_index do |a,i|
+      name = test[:name]+"_box_#{i}"
+      ramp_name = test[:name]+"_ramp_#{i}"
+      pos_xy = radius * Vector[Math.cos(a), Math.sin(a)] + Vector[0, h*40]
+      vel_xy = radius * Vector[Math.cos(a), Math.sin(a)]
+%>
+      <model name='<%= ramp_name %>'>
+        <pose relative_to='groundplane'><%= a_to_s(pos_xy) %> 0.5 0 0.2 <%= a %></pose>
+        <static>1</static>
+        <link name="link">
+          <pose>0 0 0 0 0 0</pose>
+          <collision name="collision">
+            <pose relative_to="link">0 0 0 0 0 0</pose>
+            <geometry>
+              <box>
+                <size>5 1 0.02</size>
+              </box>
+            </geometry>
+            <surface>
+              <contact>
+                <ode>
+                  <kp>1e+06</kp>
+                  <kd>1</kd>
+                </ode>
+              </contact>
+              <friction>
+                <ode>
+                  <mu>1</mu>
+                  <mu2>1</mu2>
+                </ode>
+              </friction>
+            </surface>
+          </collision>
+          <visual name="visual">
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+              <box>
+                <size>5 1 0.02</size>
+              </box>
+            </geometry>
+            <material>
+              <ambient> .3 .3 .3  0.5</ambient>
+              <diffuse> .7 .7 .7  0.5</diffuse>
+              <specular> 0.01 0.01 0.01 1.000000 1.500000</specular>
+            </material>
+          </visual>
+          <gravity>0</gravity>
+          <velocity_decay/>
+        </link>
+      </model>
+      <model name='<%= name %>'>
+        <pose relative_to='<%= ramp_name %>'>0 0 0.1 0 0 0</pose>
+        <link name='link_1'>
+          <inertial>
+            <mass><%= box[:mass] %></mass>
+            <inertia>
+              <ixx><%= box[:ixx] %></ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy><%= box[:iyy] %></iyy>
+              <iyz>0</iyz>
+              <izz><%= box[:izz] %></izz>
+            </inertia>
+          </inertial>
+          <collision name='collision'>
+            <geometry>
+              <box>
+                <size><%= a_to_s(box[:size]) %></size>
+              </box>
+            </geometry>
+            <surface>
+              <friction>
+                <ode>
+                  <mu><%= mu %></mu>
+                  <mu2><%= mu2 %></mu2>
+                </ode>
+              </friction>
+            </surface>
+          </collision>
+          <visual name='visual'>
+            <geometry>
+              <box>
+                <size><%= a_to_s(box[:size]) %></size>
+              </box>
+            </geometry>
+            <material>
+              <ambient><%= color %></ambient>
+              <diffuse><%= color %></diffuse>
+              <specular>0.1 0.1 0.1 1 1</specular>
+            </material>
+          </visual>
+        </link>
+      </model>
+<%
+    end
+%>
+<%
+  end
+%>
+  </world>
+</sdf>

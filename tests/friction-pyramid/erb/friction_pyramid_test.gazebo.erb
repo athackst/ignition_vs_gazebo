@@ -1,0 +1,192 @@
+<?xml version="1.0" ?>
+<%= "<!-- this file was generated using embedded ruby -->" %>
+<sdf version='1.7'>
+  <world name='lessons'>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <physics type="ode">
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>50</iters>
+          <friction_model>pyramid_model</friction_model>
+        </solver>
+      </ode>
+    </physics>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>0 40 100 0 1.570796 0</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+
+    <model name='groundplane'>
+      <static>1</static>
+      <pose>0 0 0 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <contact/>
+          </surface>
+        </collision>
+      </link>
+    </model>
+
+<%
+  # Test cone friction model
+  # set equal friction coefficients, but use default directions
+  require 'matrix'
+  def a_to_s(v)
+    Array(v).join(" ")
+  end
+
+  # box dimensions
+  dx = 0.5
+  dy = dx
+  dz = 0.2
+
+  box = {}
+  box[:size] = Vector[dx, dy, dz]
+  box[:mass] = 1
+  box[:ixx] = box[:mass] / 12.0 * (dy**2 + dz**2)
+  box[:iyy] = box[:mass] / 12.0 * (dz**2 + dx**2)
+  box[:izz] = box[:mass] / 12.0 * (dx**2 + dy**2)
+
+  box_count = 32
+  box_angles = 2 * Math::PI * Vector[*(0..box_count-1)] / box_count
+
+  test_set = [
+    { :name => "boxes",
+      :color => "0 0 1 1",
+      :mu => "0.05",
+      :mu2 => "0.05"
+    },
+    { :name => "boxes_mu",
+      :color => "0 1 0 1",
+      :mu => "0.1",
+      :mu2 => "0.05"
+    },
+    { :name => "boxes_mu2",
+      :color => "1 0 0 1",
+      :mu => "0.05",
+      :mu2 => "0.1"
+    }
+  ]
+  test_set.each_with_index do |test, h|
+    color = test[:color]
+    mu = test[:mu]
+    mu2 = test[:mu2]
+    radius = 9
+    offset = 20
+    box_angles.each_with_index do |a,i|
+      name = test[:name]+"_box_#{i}"
+      ramp_name = test[:name]+"_ramp_#{i}"
+      pos_xy = radius * Vector[Math.cos(a), Math.sin(a)] + Vector[0, h*40]
+      vel_xy = radius * Vector[Math.cos(a), Math.sin(a)]
+%>
+      <model name='<%= ramp_name %>'>
+        <pose relative_to='groundplane'><%= a_to_s(pos_xy) %> 0.5 0 0.2 <%= a %></pose>
+        <static>1</static>
+        <link name="link">
+          <pose>0 0 0 0 0 0</pose>
+          <collision name="collision">
+            <pose relative_to="link">0 0 0 0 0 0</pose>
+            <geometry>
+              <box>
+                <size>5 1 0.02</size>
+              </box>
+            </geometry>
+            <surface>
+              <contact>
+                <ode>
+                  <kp>1e+06</kp>
+                  <kd>1</kd>
+                </ode>
+              </contact>
+              <friction>
+                <ode>
+                  <mu>1</mu>
+                  <mu2>1</mu2>
+                </ode>
+              </friction>
+            </surface>
+          </collision>
+          <visual name="visual">
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+              <box>
+                <size>5 1 0.02</size>
+              </box>
+            </geometry>
+            <material>
+              <ambient> .3 .3 .3  .5</ambient>
+              <diffuse> .7 .7 .7  .5</diffuse>
+              <specular> 0.01 0.01 0.01 1.000000 1.500000</specular>
+            </material>
+          </visual>
+          <gravity>0</gravity>
+          <velocity_decay/>
+        </link>
+      </model>
+      <model name='<%= name %>'>
+        <pose relative_to='<%= ramp_name %>'>0 0 0.1 0 0 0</pose>
+        <link name='link_1'>
+          <inertial>
+            <mass><%= box[:mass] %></mass>
+            <inertia>
+              <ixx><%= box[:ixx] %></ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy><%= box[:iyy] %></iyy>
+              <iyz>0</iyz>
+              <izz><%= box[:izz] %></izz>
+            </inertia>
+          </inertial>
+          <collision name='collision'>
+            <geometry>
+              <box>
+                <size><%= a_to_s(box[:size]) %></size>
+              </box>
+            </geometry>
+            <surface>
+              <friction>
+                <ode>
+                  <mu><%= mu %></mu>
+                  <mu2><%= mu2 %></mu2>
+                </ode>
+              </friction>
+            </surface>
+          </collision>
+          <visual name='visual'>
+            <geometry>
+              <box>
+                <size><%= a_to_s(box[:size]) %></size>
+              </box>
+            </geometry>
+            <material>
+              <ambient><%= color %></ambient>
+              <diffuse><%= color %></diffuse>
+              <specular>0.1 0.1 0.1 1 1</specular>
+            </material>
+          </visual>
+        </link>
+      </model>
+<%
+    end
+%>
+<%
+  end
+%>
+  </world>
+</sdf>
