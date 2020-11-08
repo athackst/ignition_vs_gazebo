@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>ignition_vs_gazebo</name>
+    <version>0.0.0</version>
+    <description>This package contains files used for testing gazebo and igntion simulators</description>
+    <maintainer email="allison@allisonthackston.com">Allison Thackston</maintainer>
+    <author email="allison@allisonthackston.com">Allison Thackston</author>
+    <license>Apache 2.0</license>
+    <depend>xacro</depend>
+</package>

@@ -1,0 +1,37 @@
+{
+	"name": "GazeboVsIgnition",
+	"dockerFile": "Dockerfile",
+	"context": "../",
+	"build": {
+		"args": {
+			"WORKSPACE": "${containerWorkspaceFolder}"
+		}
+	},
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+	"runArgs": [
+		"--privileged", // For joystick tests
+		"--network=host", // For ros comm ports
+		// For gdb
+		"--cap-add=SYS_PTRACE",
+		"--security-opt=seccomp:unconfined",
+		// For display sharing
+		"--security-opt=apparmor:unconfined",
+		"--volume=/tmp/.X11-unix:/tmp/.X11-unix"
+	],
+	"containerEnv": {
+		"DISPLAY": "${localEnv:DISPLAY}", // For display sharing
+	},
+	"postCreateCommand": "sudo apt-get update && rosdep update && rosdep install --from-paths . --ignore-src -y",
+	"remoteUser": "ros",
+	"extensions": [
+		"ms-iot.vscode-ros",
+		"ms-vscode.cpptools",
+		"redhat.vscode-yaml",
+		"streetsidesoftware.code-spell-checker",
+		"twxs.cmake",
+		"yzhang.markdown-all-in-one",
+		"dotjoshjohnson.xml"
+	]
+}
