@@ -1,0 +1,58 @@
+<sdf version="1.7"
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="joint.xacro" />
+
+  <xacro:sun/>
+  <xacro:ground_plane/>
+
+  <xacro:property name="m" value="20"/>
+  <xacro:property name="l" value="1"/>
+  <xacro:property name="z" value="${l + 0.5}"/>
+  <xacro:property name="r" value="0.05"/>
+
+
+  <xacro:pendulum name="pendulum" mass="${m}" length="${l}" radius="${r}" color="0 1 0 1">
+    <pose>0 0 ${z} ${pi/4} 0 0</pose>
+    <dynamics>
+    <damping>10</damping>
+    </dynamics>
+  </xacro:pendulum>
+
+  <xacro:pendulum name="pendulum_1" mass="${m}" length="${l}" radius="${r}" color="0 1 1 1">
+    <pose>0.5 0 ${z} ${pi/4} 0 0</pose>
+    <dynamics>
+    <damping>10</damping>
+      <spring_reference>${-pi/4}</spring_reference>
+      <spring_stiffness>1.0</spring_stiffness>
+    </dynamics>
+  </xacro:pendulum>
+
+  <xacro:pendulum name="pendulum_10" mass="${m}" length="${l}" radius="${r}" color="0 0 1 1">
+    <pose>1 0 ${z} ${pi/4} 0 0</pose>
+    <dynamics>
+    <damping>10</damping>
+      <spring_reference>${-pi/4}</spring_reference>
+      <spring_stiffness>10.0</spring_stiffness>
+    </dynamics>
+  </xacro:pendulum>
+
+  <xacro:pendulum name="pendulum_100" mass="${m}" length="${l}" radius="${r}" color="1 0 1 1">
+    <pose>1.5 0 ${z} ${pi/4} 0 0</pose>
+    <dynamics>
+    <damping>10</damping>
+      <spring_reference>${-pi/4}</spring_reference>
+      <spring_stiffness>100.0</spring_stiffness>
+    </dynamics>
+  </xacro:pendulum>
+
+  <xacro:pendulum name="pendulum_1000" mass="${m}" length="${l}" radius="${r}" color="1 0 0 1">
+    <pose>2 0 ${z} ${pi/4} 0 0</pose>
+    <dynamics>
+      <damping>10</damping>
+      <spring_reference>${-pi/4}</spring_reference>
+      <spring_stiffness>1000.0</spring_stiffness>
+    </dynamics>
+  </xacro:pendulum>
+
+</sdf>
