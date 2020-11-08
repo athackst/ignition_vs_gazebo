@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<sdf version='1.7' 
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <world name='default'>
+
+    <xacro:include filename="xacro/gui.xacro"/>
+    <xacro:ign_gui world="default" camera_pose="0 -2 1 0 0 ${3*pi/8}"/>
+
+    <xacro:include filename="xacro/joint_test.xacro" />
+
+  </world>
+</sdf>
