@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<sdf version="1.7" 
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- balls are modeled as spherical shells -->
+  <xacro:macro name="ball" params="name bounce color mass:=1 radius:=0.25 *pose">
+    <model name="${name}">
+      <xacro:insert_block name="pose" />
+      <link name="${name}_link">
+        <pose>0 0 ${radius} 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>${mass}</mass>
+          <inertia>
+            <ixx>${2/3 * mass * radius * radius}</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>${2/3 * mass * radius * radius}</iyy>
+            <iyz>0</iyz>
+            <izz>${2/3 * mass * radius * radius}</izz>
+          </inertia>
+        </inertial>
+        <collision name="${name}_collision">
+          <pose relative_to="${name}_link">0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>${radius}</radius>
+            </sphere>
+          </geometry>
+          <surface>
+            <bounce>
+              <restitution_coefficient>${bounce}</restitution_coefficient>
+              <threshold>0</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <max_vel>1000</max_vel>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="${name}_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>${radius}</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>${color}</ambient>
+            <diffuse>${color}</diffuse>
+            <specular>0.1 0.1 0.1 1 1</specular>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+      </link>
+    </model>
+  </xacro:macro>
+
+  <!-- A ground plane -->
+  <xacro:macro name="ground_plane">
+    <xacro:property name="length" value="100"/>
+    <xacro:property name="width" value="100"/>
+    <model name='ground_plane'>
+      <static>1</static>
+      <pose>0 0 0 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>${length} ${width}</size>
+            </plane>
+          </geometry>
+          <surface>
+            <bounce>
+              <restitution_coefficient>1</restitution_coefficient>
+              <threshold>0</threshold>
+            </bounce>
+            <friction>
+              <ode/>
+            </friction>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>${length} ${width}</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </xacro:macro>
+
+  <!-- A global light source -->
+  <xacro:macro name="sun">
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+  </xacro:macro>
+
+</sdf>

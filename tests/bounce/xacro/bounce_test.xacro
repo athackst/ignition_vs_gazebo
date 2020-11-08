@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<sdf version="1.7" 
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="bounce.xacro" />
+
+  <xacro:sun/>
+  <xacro:ground_plane/>
+
+  <xacro:ball name="ball_0" bounce="0" color="1 0 0 1">
+    <pose>0 -5 1 0 0 0</pose>
+  </xacro:ball>
+
+  <xacro:ball name="ball_0.1" bounce="0.1" color="1 1 0 1">
+    <pose>0 -4 1 0 0 0</pose>
+  </xacro:ball>
+
+  <xacro:ball name="ball_0.2" bounce="0.2" color="0 1 0 1">
+    <pose>0 -3 1 0 0 0</pose>
+  </xacro:ball>
+
+  <xacro:ball name="ball_0.3" bounce="0.3" color="0 1 1 1">
+    <pose>0 -2 1 0 0 0</pose>
+  </xacro:ball>
+
+  <xacro:ball name="ball_0.4" bounce="0.4" color="0 0 1 1">
+    <pose>0 -1 1 0 0 0</pose>
+  </xacro:ball>
+
+  <xacro:ball name="ball_0.5" bounce="0.5" color="1 0 1 1">
+    <pose>0 0 1 0 0 0</pose>
+  </xacro:ball>
+
+  <xacro:ball name="ball_0.6" bounce="0.6" color="0.5 0 0 1">
+    <pose>0 1 1 0 0 0</pose>
+  </xacro:ball>
+
+  <xacro:ball name="ball_0.7" bounce="0.7" color="0.5 0.5 0 1">
+    <pose>0 2 1 0 0 0</pose>
+  </xacro:ball>
+
+  <xacro:ball name="ball_0.8" bounce="0.8" color="0 0.5 0 1">
+    <pose>0 3 1 0 0 0</pose>
+  </xacro:ball>
+
+  <xacro:ball name="ball_0.9" bounce="0.9" color="0 0.7 0.7 1">
+    <pose>0 4 1 0 0 0</pose>
+  </xacro:ball>
+
+  <xacro:ball name="ball_1" bounce="1" color="0 0 0.5 1">
+    <pose>0 5 1 0 0 0</pose>
+  </xacro:ball>
+
+</sdf>
