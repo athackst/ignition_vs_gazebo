@@ -1,0 +1,5 @@
+site_name: athackst/ignition_vs_gazebo
+docs_dir: docs
+plugins:
+- simple
+- search

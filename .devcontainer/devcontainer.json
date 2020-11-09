@@ -1,5 +1,5 @@
 {
-	"name": "GazeboVsIgnition",
+	"name": "IgnitionVsGazebo",
 	"dockerFile": "Dockerfile",
 	"context": "../",
 	"build": {
@@ -29,7 +29,7 @@
 		"ms-iot.vscode-ros",
 		"ms-vscode.cpptools",
 		"redhat.vscode-yaml",
-		"streetsidesoftware.code-spell-checker",
+		"znck.grammarly",
 		"twxs.cmake",
 		"yzhang.markdown-all-in-one",
 		"dotjoshjohnson.xml"
