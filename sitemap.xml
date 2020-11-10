@@ -7,5 +7,9 @@
      <loc>https://athackst.github.io/ignition_vs_gazebo/tests/bounce/</loc>
      <lastmod>2020-11-10</lastmod>
      <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://athackst.github.io/ignition_vs_gazebo/tests/friction/</loc>
+     <lastmod>2020-11-10</lastmod>
+     <changefreq>daily</changefreq>
     </url>
 </urlset>
