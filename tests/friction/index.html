@@ -349,6 +349,44 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      Friction pyramid
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Friction pyramid" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        <span class="md-nav__icon md-icon"></span>
+        Friction pyramid
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../friction-pyramid/" class="md-nav__link">
+      Friction Pyramid
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -436,6 +474,7 @@
 <p>Cube7: Cube4, rotated along the Y axis  Since the mu value is rotated to be perpendicular to the ramp, I expect the block to move.</p>
 <p>Cube8: <code>mu=1</code> rotated along the X axis.  Since only setting mu should set both values, rotation shouldn't matter and the block shouldn't move.</p>
 <p>Cube9: <code>mu=1</code> rotated along the X and Y axis.  Since only setting mu should set both values, rotation shouldn't matter and the block shouldn't move.</p>
+<p>Notably, neither behaved quite how I was expecting.  In Gazebo, the mu and mu2 arguments acted on the opposite axis as I expected, with the world y frame corresponding to mu and the world x frame corresponding to mu2. In Ignition, the mu and mu2 arguments act on the axis that I expected, with x corresponding to mu and y corresponding to mu2. However, setting the fdir1 direction to orientations perpendicular to the ramp direction incorrectly makes the box stay on the ramp.</p>
                 
               
               
@@ -468,6 +507,20 @@
             </div>
           </a>
         
+        
+          <a href="../friction-pyramid/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Friction Pyramid
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
         
       </nav>
     </div>

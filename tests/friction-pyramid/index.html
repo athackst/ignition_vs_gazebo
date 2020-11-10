@@ -8,20 +8,22 @@
       
       
       
+        <link rel="canonical" href="https://athackst.github.io/ignition_vs_gazebo/tests/friction-pyramid/">
       
-      <link rel="shortcut icon" href="/ignition_vs_gazebo/assets/images/favicon.png">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.4">
     
     
       
-        <title>athackst/ignition_vs_gazebo</title>
+        <title>Friction Pyramid - athackst/ignition_vs_gazebo</title>
       
     
     
-      <link rel="stylesheet" href="/ignition_vs_gazebo/assets/stylesheets/main.358818c7.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.358818c7.min.css">
       
         
-        <link rel="stylesheet" href="/ignition_vs_gazebo/assets/stylesheets/palette.f0267088.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f0267088.min.css">
         
           
           
@@ -64,6 +66,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#friction-pyramid" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -90,7 +97,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              
+              Friction Pyramid
             
           </span>
         </div>
@@ -190,7 +197,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ignition_vs_gazebo/." class="md-nav__link">
+    <a href="../.." class="md-nav__link">
       ignition_vs_gazebo
     </a>
   </li>
@@ -200,10 +207,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Tests
@@ -244,7 +253,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ignition_vs_gazebo/tests/bounce/" class="md-nav__link">
+    <a href="../bounce/" class="md-nav__link">
       Bounce
     </a>
   </li>
@@ -282,7 +291,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ignition_vs_gazebo/tests/friction/" class="md-nav__link">
+    <a href="../friction/" class="md-nav__link">
       Friction
     </a>
   </li>
@@ -297,10 +306,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3" checked>
     
     <label class="md-nav__link" for="nav-2-3">
       Friction pyramid
@@ -318,11 +329,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="/ignition_vs_gazebo/tests/friction-pyramid/" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
       Friction Pyramid
     </a>
+    
   </li>
 
         
@@ -343,12 +363,35 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
-
+                
+                
+                <h1 id="friction-pyramid">Friction Pyramid</h1>
+<p>Both Gazebo and Ignition use a friction pyramid approximation.  </p>
+<p>During tests of <a href="/tests/friction/README.md">friction</a> I noticed that Gazebo and Ignition set the values differently in x and y when using the default world frame which is clearly shown below</p>
+<p><img alt="ignition" src="docs/friction_pyramid_ignition.png" />
+<img alt="gazebo" src="docs/friction_pyramid_gazebo.png" /></p>
+<p>Also of note is that while the ignition simulation produces much smoother results, it comes at a cost of the real-time factor.</p>
+                
+              
               
                 
 
@@ -361,6 +404,27 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../friction/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Friction
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -409,15 +473,15 @@
       
     </div>
     
-      <script src="/ignition_vs_gazebo/assets/javascripts/vendor.7e0ee788.min.js"></script>
-      <script src="/ignition_vs_gazebo/assets/javascripts/bundle.b3a72adc.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/vendor.7e0ee788.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b3a72adc.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
-          base: "/ignition_vs_gazebo",
+          base: "../..",
           features: [],
           search: Object.assign({
-            worker: "/ignition_vs_gazebo/assets/javascripts/worker/search.4ac00218.min.js"
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
