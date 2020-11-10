@@ -1,8 +1,8 @@
 # ignition_vs_gazebo
 
-![ignition vs. gazebo side by side](tests/inertia/docs/inertia_sxs.gif)
+![ignition vs. gazebo](https://github.com/athackst/ignition_vs_gazebo/raw/main/.github/ignition_vs_gazebo.png)
 
-A collection of tests between gazebo and ignition.
+A collection of tests between gazebo and ignition.  For a detailed analysis, see my artical comparing [ignition and gazebo](https://www.allisonthackston.com/articles/ignition_vs_gazebo.html).
 
 ## Quickstart
 
