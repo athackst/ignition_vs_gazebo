@@ -1,0 +1,57 @@
+<sdf version="1.7"
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="wheel.xacro" />
+
+  <xacro:sun/>
+  <xacro:ground_plane/>
+
+  <xacro:one_wheel name="wheel" mass="1" width="0.04" radius="0.0355" color="1 1 0 1">
+    <pose relative_to="ground_plane">0 0 0 0 0 0</pose>
+    <dynamics>
+    </dynamics>
+  </xacro:one_wheel>
+
+  <xacro:two_wheel name="two_wheel" mass="1" wheel_width="0.04" wheel_radius="0.0355" track_width="0.12" body_length="0.165" body_height="0.165" color="1 1 0 1">
+    <pose relative_to="ground_plane">1 0 0 0 0 0</pose>
+    <dynamics>
+    </dynamics>
+  </xacro:two_wheel>
+
+  <xacro:turtlebot name="turtlebot" color="1 1 0 1">
+    <pose relative_to="ground_plane">1 1 0 0 0 0</pose>
+    <dynamics>
+    </dynamics>
+  </xacro:turtlebot>
+
+  <xacro:turtlebot_castor name="turtlebot_castor" color="1 1 0 1">
+    <pose relative_to="ground_plane">1 2 0 0 0 0</pose>
+    <dynamics>
+    </dynamics>
+  </xacro:turtlebot_castor>
+
+  <xacro:four_wheel name="four_wheel" mass="1" wheel_width="0.04" wheel_radius="0.0355" track_width="0.12" body_length="0.165" body_height="0.165" color="1 1 0 1">
+    <pose relative_to="ground_plane">2 0 0 0 0 0</pose>
+    <dynamics>
+    </dynamics>
+  </xacro:four_wheel>
+
+  <xacro:four_wheel_uncentered name="four_wheel_uncentered" mass="1" wheel_width="0.04" wheel_radius="0.0355" track_width="0.12" body_length="0.165" body_height="0.165" color="1 1 0 1">
+    <pose relative_to="ground_plane">2 1 0 0 0 0</pose>
+    <dynamics>
+    </dynamics>
+  </xacro:four_wheel_uncentered>
+
+  <xacro:ackerman name="ackerman" mass="1" wheel_width="0.04" wheel_radius="0.0355" track_width="0.12" body_length="0.165" body_height="0.165" color="1 1 0 1">
+    <pose relative_to="ground_plane">2 2 0 0 0 0</pose>
+    <dynamics>
+    </dynamics>
+  </xacro:ackerman>
+
+  <xacro:compound_ackerman name="compound_ackerman" mass="1" wheel_width="0.04" wheel_radius="0.0355" track_width="0.12" body_length="0.165" body_height="0.165" color="1 1 0 1">
+    <pose relative_to="ground_plane">2 3 0 0 0 0</pose>
+    <dynamics>
+    </dynamics>
+  </xacro:compound_ackerman>
+
+</sdf>

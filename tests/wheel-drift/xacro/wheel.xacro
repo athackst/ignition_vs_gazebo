@@ -1,0 +1,691 @@
+<?xml version="1.0"?>
+<sdf version="1.7"
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="wheel_support" params="name width radius">
+    <link name="${name}">
+      <pose>0 0 ${radius} ${pi/2} 0 0</pose>
+      <inertial>
+        <pose>0 ${-3/4*radius} 0 0 0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>${1/12 * mass * (width * width + radius/4 * radius/4)}</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>${1/12 * mass * (radius*2.5 * radius*2.5 + radius/4 * radius/4)}</iyy>
+          <iyz>0</iyz>
+          <izz>${1/12 * mass * (width * width + radius*2.5 *radius*2.5)}</izz>
+        </inertia>
+      </inertial>
+      <visual name="${name}_front_visual">
+        <pose>${radius} ${-3/4*radius} 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>${width}</length>
+            <radius>${radius/4}</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient> .3 .3 .3  1.0</ambient>
+          <diffuse> .7 .7 .7  1.0</diffuse>
+          <specular> 0.01 0.01 0.01 1.000000 1.500000</specular>
+        </material>
+      </visual>
+      <visual name="${name}_back_visual">
+        <pose>${-radius} ${-3/4*radius} 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>${width}</length>
+            <radius>${radius/4}</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient> .3 .3 .3  1.0</ambient>
+          <diffuse> .7 .7 .7  1.0</diffuse>
+          <specular> 0.01 0.01 0.01 1.000000 1.500000</specular>
+        </material>
+      </visual>
+      <collision name="${name}_back_collision">
+        <pose>${-radius} ${-3/4*radius} 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>${width}</length>
+            <radius>${radius/4}</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+06</kp>
+              <kd>1</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0</mu>
+              <mu2>0</mu2>
+              <slip1>1</slip1>
+              <slip2>1</slip2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="${name}_front_collision">
+        <pose>${radius} ${-3/4*radius} 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>${width}</length>
+            <radius>${radius/4}</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+06</kp>
+              <kd>1</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0</mu>
+              <mu2>0</mu2>
+              <slip1>1</slip1>
+              <slip2>1</slip2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="wheel_base" params="name mass length width height *pose">
+    <link name="${name}">
+      <xacro:insert_block name="pose" />
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>${mass}</mass>
+        <inertia>
+          <ixx>${1/12 * mass * (width * width + height * height)}</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>${1/12 * mass * (length * length + height * height)}</iyy>
+          <iyz>0</iyz>
+          <izz>${1/12 * mass * (width * width + length *length)}</izz>
+        </inertia>
+      </inertial>
+      <visual name="${name}_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size> ${length} ${width} ${height}</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0 1 1 1</ambient>
+          <diffuse>0 1 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1 1</specular>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="wheel" params="name parent mass width radius color *pose *dynamics">
+    <joint name="${name}_joint" type="revolute">
+      <parent>${parent}</parent>
+      <child>${name}</child>
+      <xacro:insert_block name="pose" />
+      <axis>
+        <xyz>0 0 1</xyz>
+        <xacro:insert_block name="dynamics" />
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+      </axis>
+    </joint>
+    <link name="${name}">
+      <xacro:insert_block name="pose" />
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>${mass}</mass>
+        <inertia>
+          <ixx>${1/12 * mass * (3 * radius * radius + width * width)}</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>${1/12 * mass * (3 * radius * radius + width * width)}</iyy>
+          <iyz>0</iyz>
+          <izz>${0.5 * mass * radius * radius}</izz>
+        </inertia>
+      </inertial>
+      <collision name="${name}_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>${width}</length>
+            <radius>${radius}</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+06</kp>
+              <kd>1</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 1</fdir1>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="${name}_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>${width}</length>
+            <radius>${radius}</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>${color}</ambient>
+          <diffuse>${color}</diffuse>
+          <specular> 0.01 0.01 0.01 1.000000 1.500000</specular>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>1</linear>
+        <angular>1</angular>
+      </velocity_decay>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="steering_hinge" params="name parent *pose *axis">
+    <joint name="${name}_joint" type="revolute">
+      <parent>${parent}</parent>
+      <child>${name}</child>
+      <xacro:insert_block name="pose" />
+      <xacro:insert_block name="axis" />
+    </joint>
+
+    <link name="${name}">
+      <xacro:property name="mass" value="1"/>
+      <xacro:property name="radius" value="0.01"/>
+      <xacro:insert_block name="pose" />
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>${mass}</mass>
+        <inertia>
+          <ixx>${2/5 * mass * radius * radius}</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>${2/5 * mass * radius * radius}</iyy>
+          <iyz>0</iyz>
+          <izz>${2/5 * mass * radius * radius}</izz>
+        </inertia>
+      </inertial>
+      <visual name="${name}_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>${radius}</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient> .1 .1 .1  1.0</ambient>
+          <diffuse> .7 .7 .7  1.0</diffuse>
+          <specular> 0.01 0.01 0.01 1.000000 1.500000</specular>
+        </material>
+      </visual>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="compound_wheel" params="name parent mass width radius color *pose *dynamics">
+    <joint name="${name}_joint" type="revolute2">
+      <parent>${parent}</parent>
+      <child>${name}</child>
+      <xacro:insert_block name="pose" />
+      <axis>
+        <xyz>0 0 1</xyz>
+        <xacro:insert_block name="dynamics" />
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+      </axis>
+      <axis2>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1</lower>
+          <upper>1</upper>
+        </limit>
+      </axis2>
+    </joint>
+    <link name="${name}">
+      <xacro:insert_block name="pose" />
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>${mass}</mass>
+        <inertia>
+          <ixx>${1/12 * mass * (3 * radius * radius + width * width)}</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>${1/12 * mass * (3 * radius * radius + width * width)}</iyy>
+          <iyz>0</iyz>
+          <izz>${0.5 * mass * radius * radius}</izz>
+        </inertia>
+      </inertial>
+      <collision name="${name}_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>${width}</length>
+            <radius>${radius}</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+06</kp>
+              <kd>1</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 1</fdir1>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="${name}_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>${width}</length>
+            <radius>${radius}</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>${color}</ambient>
+          <diffuse>${color}</diffuse>
+          <specular> 0.01 0.01 0.01 1.000000 1.500000</specular>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="castor" params="name parent mass radius color *pose">
+    <joint name="${name}_joint" type="fixed">
+      <parent>${parent}</parent>
+      <child>${name}</child>
+      <xacro:insert_block name="pose" />
+    </joint>
+    <link name="${name}">
+      <xacro:insert_block name="pose" />
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>${mass}</mass>
+        <inertia>
+          <ixx>${2/5 * mass * radius * radius}</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>${2/5 * mass * radius * radius}</iyy>
+          <iyz>0</iyz>
+          <izz>${2/5 * mass * radius * radius}</izz>
+        </inertia>
+      </inertial>
+      <collision name="${name}_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>${radius}</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0</mu>
+              <mu2>0</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="${name}_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>${radius}</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>${color}</ambient>
+          <diffuse>${color}</diffuse>
+          <specular> 0.01 0.01 0.01 1.000000 1.500000</specular>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="one_wheel" params="name mass width radius color *pose *dynamics">
+    <model name="${name}">
+      <xacro:insert_block name="pose"/>
+      <xacro:wheel_support name="base_link" width="${width}" radius="${radius}"/>
+      <xacro:wheel name="wheel" parent="base_link" width="${width}" radius="${radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">0 0 0 0 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+    </model>
+  </xacro:macro>
+
+  <xacro:macro name="two_wheel" params="name mass wheel_width wheel_radius track_width body_length body_height color *pose *dynamics">
+    <model name="${name}">
+      <xacro:insert_block name="pose"/>
+      <xacro:wheel_base name="base_link" mass="1" length="${body_length}" width="${track_width}" height="${body_height}">
+        <pose>0 0 ${body_height/2 + wheel_radius} 0 0 0</pose>
+      </xacro:wheel_base>
+      <xacro:wheel name="right_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">0 ${track_width/2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <xacro:wheel name="left_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">0 ${-track_width /2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <static>0</static>
+    </model>
+  </xacro:macro>
+
+  <xacro:macro name="turtlebot" params="name color *pose *dynamics">
+    <xacro:property name="wheel_width" value="0.018"/>
+    <xacro:property name="wheel_radius" value="0.033"/>
+    <xacro:property name="body_length" value="0.140"/>
+    <xacro:property name="track_width" value="0.140"/>
+    <xacro:property name="body_height" value="0.143"/>
+    <model name="${name}">
+      <xacro:insert_block name="pose"/>
+      <xacro:wheel_base name="base_link" mass="8.2573504e-01" length="${body_length}" width="${track_width}" height="${body_height}">
+        <pose>-0.032 0 0.070 0 0 0</pose>
+      </xacro:wheel_base>
+      <xacro:wheel name="right_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="2.8498940e-02">
+        <pose relative_to="base_link">0.0 -0.08 ${wheel_radius-0.07} ${-pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics"/>
+      </xacro:wheel>
+      <xacro:wheel name="left_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="2.8498940e-02">
+        <pose relative_to="base_link">0.0 0.08 ${wheel_radius-0.07} ${-pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <xacro:castor name="castor" parent="base_link" radius="0.030" color="${color}" mass="0.005">
+        <pose relative_to="base_link">-0.081 0 ${0.030-0.07} ${pi/2} 0 0</pose>
+      </xacro:castor>
+      <static>0</static>
+    </model>
+  </xacro:macro>
+
+  <xacro:macro name="turtlebot_castor" params="name color *pose *dynamics">
+    <xacro:property name="wheel_width" value="0.018"/>
+    <xacro:property name="wheel_radius" value="0.033"/>
+    <xacro:property name="body_length" value="0.140"/>
+    <xacro:property name="track_width" value="0.140"/>
+    <xacro:property name="body_height" value="0.143"/>
+    <model name="${name}">
+      <xacro:insert_block name="pose"/>
+      <xacro:wheel_base name="base_link" mass="8.2573504e-01" length="${body_length}" width="${track_width}" height="${body_height}">
+        <pose>-0.032 0 0.070 0 0 0</pose>
+      </xacro:wheel_base>
+      <xacro:wheel name="right_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="2.8498940e-02">
+        <pose relative_to="base_link">0.0 -0.08 ${wheel_radius-0.07} ${-pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics"/>
+      </xacro:wheel>
+      <xacro:wheel name="left_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="2.8498940e-02">
+        <pose relative_to="base_link">0.0 0.08 ${wheel_radius-0.07} ${-pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <xacro:compound_wheel name="active_castor" parent="base_link" width="${wheel_width}" radius="0.030" color="${color}" mass="0.005">
+        <pose relative_to="base_link">-0.081 0 ${0.030-0.07} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:compound_wheel>
+      <static>0</static>
+    </model>
+  </xacro:macro>
+
+  <xacro:macro name="four_wheel" params="name mass wheel_width wheel_radius track_width body_length body_height color *pose *dynamics">
+    <model name="${name}">
+      <xacro:insert_block name="pose"/>
+      <xacro:wheel_base name="base_link" mass="1" length="${body_length}" width="${track_width}" height="${body_height}">
+        <pose>0 0 ${body_height/2 + wheel_radius} 0 0 0</pose>
+      </xacro:wheel_base>
+      <xacro:wheel name="front_right_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">${body_length/2} ${track_width/2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <xacro:wheel name="front_left_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">${body_length/2} ${-track_width /2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <xacro:wheel name="back_right_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">${-body_length/2} ${track_width/2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <xacro:wheel name="back_left_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">${-body_length/2} ${-track_width /2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <static>0</static>
+    </model>
+  </xacro:macro>
+
+  <xacro:macro name="four_wheel_uncentered" params="name mass wheel_width wheel_radius track_width body_length body_height color *pose *dynamics">
+    <model name="${name}">
+      <xacro:insert_block name="pose"/>
+      <xacro:wheel_base name="base_link" mass="1" length="${body_length}" width="${track_width}" height="${body_height}">
+        <pose>0 0 ${body_height/2 + wheel_radius} 0 0 0</pose>
+      </xacro:wheel_base>
+      <xacro:wheel name="front_right_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">${body_length} ${track_width/2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <xacro:wheel name="front_left_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">${body_length} ${-track_width /2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <xacro:wheel name="back_right_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">0 ${track_width/2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <xacro:wheel name="back_left_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">0 ${-track_width /2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <static>0</static>
+    </model>
+  </xacro:macro>
+
+  <xacro:macro name="ackerman" params="name mass wheel_width wheel_radius track_width body_length body_height color *pose *dynamics">
+    <model name="${name}">
+      <xacro:insert_block name="pose"/>
+      <xacro:wheel_base name="base_link" mass="1" length="${body_length}" width="${track_width}" height="${body_height}">
+        <pose>0 0 ${body_height/2 + wheel_radius} 0 0 0</pose>
+      </xacro:wheel_base>
+      <xacro:steering_hinge name="right_steer" parent="base_link">
+        <pose relative_to="base_link">${body_length/2} ${track_width/2} ${-body_height/2} 0 0 0</pose>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1</lower>
+            <upper>1</upper>
+          </limit>
+        </axis>
+      </xacro:steering_hinge>
+      <xacro:wheel name="front_right_wheel" parent="right_steer" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="right_steer">0 0 0 ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <xacro:steering_hinge name="left_steer" parent="base_link">
+        <pose relative_to="base_link">${body_length/2} ${-track_width/2} ${-body_height/2} 0 0 0</pose>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1</lower>
+            <upper>1</upper>
+          </limit>
+        </axis>
+      </xacro:steering_hinge>
+      <xacro:wheel name="front_left_wheel" parent="left_steer" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="left_steer">0 0 0 ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <xacro:wheel name="back_right_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">${-body_length/2} ${track_width/2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <xacro:wheel name="back_left_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">${-body_length/2} ${-track_width /2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <static>0</static>
+    </model>
+  </xacro:macro>
+
+  <xacro:macro name="compound_ackerman" params="name mass wheel_width wheel_radius track_width body_length body_height color *pose *dynamics">
+    <model name="${name}">
+      <xacro:insert_block name="pose"/>
+      <xacro:wheel_base name="base_link" mass="1" length="${body_length}" width="${track_width}" height="${body_height}">
+        <pose>0 0 ${body_height/2 + wheel_radius} 0 0 0</pose>
+      </xacro:wheel_base>
+      <xacro:compound_wheel name="front_right_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">${body_length/2} ${track_width/2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:compound_wheel>
+      <xacro:compound_wheel name="front_left_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">${body_length/2} ${-track_width /2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:compound_wheel>
+      <xacro:wheel name="back_right_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">${-body_length/2} ${track_width/2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <xacro:wheel name="back_left_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="${mass}">
+        <pose relative_to="base_link">${-body_length/2} ${-track_width /2} ${-body_height/2} ${pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <static>0</static>
+    </model>
+  </xacro:macro>
+
+  <xacro:macro name="static_plane" params="name length width *pose">
+    <model name="${name}">
+      <xacro:insert_block name="pose" />
+      <static>1</static>
+      <link name="${name}_link">
+        <pose>0 0 0 0 0 0</pose>
+        <collision name="${name}_collision">
+          <pose relative_to="${name}_link">0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>${length} ${width} 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="${name}_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>${length} ${width} 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient> .3 .3 .3  1.0</ambient>
+            <diffuse> .7 .7 .7  1.0</diffuse>
+            <specular> 0.01 0.01 0.01 1.000000 1.500000</specular>
+          </material>
+        </visual>
+        <gravity>0</gravity>
+        <velocity_decay/>
+      </link>
+    </model>
+  </xacro:macro>
+
+  <!-- A ground plane -->
+  <xacro:macro name="ground_plane">
+    <xacro:property name="length" value="100"/>
+    <xacro:property name="width" value="100"/>
+    <model name='ground_plane'>
+      <static>1</static>
+      <pose>0 0 0 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>${length} ${width}</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>${length} ${width}</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </xacro:macro>
+
+  <!-- A global light source -->
+  <xacro:macro name="sun">
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+  </xacro:macro>
+
+</sdf>
