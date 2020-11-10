@@ -1,4 +1,4 @@
-# bounce
+# Bounce
 
 Bounce is the rebound or reflection after striking a surface (such as the ground).  In the simulation, this is represented by the `restitution_coefficient`.
 
