@@ -46,3 +46,5 @@ Cube7: Cube4, rotated along the Y axis  Since the mu value is rotated to be perp
 Cube8: `mu=1` rotated along the X axis.  Since only setting mu should set both values, rotation shouldn't matter and the block shouldn't move.
 
 Cube9: `mu=1` rotated along the X and Y axis.  Since only setting mu should set both values, rotation shouldn't matter and the block shouldn't move.
+
+Notably, neither behaved quite how I was expecting.  In Gazebo, the mu and mu2 arguments acted on the opposite axis as I expected, with the world y frame corresponding to mu and the world x frame corresponding to mu2. In Ignition, the mu and mu2 arguments act on the axis that I expected, with x corresponding to mu and y corresponding to mu2. However, setting the fdir1 direction to orientations perpendicular to the ramp direction incorrectly makes the box stay on the ramp.
