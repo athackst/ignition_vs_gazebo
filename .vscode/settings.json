@@ -2,6 +2,7 @@
     "ros.distro": "melodic",
     "python.pythonPath": "/usr/bin/python3",
     "grammarly.userWords": [
+        "sdformat",
         "xacro"
     ]
 }
