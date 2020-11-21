@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://athackst.github.io/ignition_vs_gazebo/tests/friction/">
+        <link rel="canonical" href="https://athackst.github.io/ignition_vs_gazebo/tests/inertia/">
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
@@ -16,7 +16,7 @@
     
     
       
-        <title>Friction - athackst/ignition_vs_gazebo</title>
+        <title>Inertia - athackst/ignition_vs_gazebo</title>
       
     
     
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#friction" class="md-skip">
+        <a href="#inertia" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Friction
+              Inertia
             
           </span>
         </div>
@@ -266,12 +266,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" checked>
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" >
     <label class="md-nav__link" for="nav-2-2">
       Friction
       <span class="md-nav__icon md-icon"></span>
@@ -288,56 +286,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Friction
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    
-    <a href="./" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../friction/" class="md-nav__link">
       Friction
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#example-code-snippet" class="md-nav__link">
-    Example code snippet
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparison" class="md-nav__link">
-    Comparison
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -387,10 +340,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4" >
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4" checked>
     <label class="md-nav__link" for="nav-2-4">
       Inertia
       <span class="md-nav__icon md-icon"></span>
@@ -407,11 +362,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../inertia/" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
       Inertia
     </a>
+    
   </li>
 
         
@@ -442,28 +406,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#example-code-snippet" class="md-nav__link">
-    Example code snippet
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparison" class="md-nav__link">
-    Comparison
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -475,39 +417,11 @@
               
                 
                 
-                <h1 id="friction">Friction</h1>
-<p>Friction is the resistance to motion of one object moving relative to another.  There are several different types of friction that you can model. Here we are modeling kinetic friction by setting the  coefficient of friction. The coefficient of friction in version 1.7 of the sdformat is modeled as an ODE parameter with mu as the coefficient for the “first friction direction” and mu2 as the coefficient for the “second friction direction”. There is an additional parameter, fdir1 that can specify a specific primary friction direction relative to the link, otherwise it is modeled relative to the world.</p>
-<p>These two directions get modeled together using a simplified friction pyramid model.</p>
-<h2 id="example-code-snippet">Example code snippet</h2>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;link&gt;</span>
-    ...
-    <span class="nt">&lt;collision</span> <span class="na">name=</span><span class="s">&quot;${name}_collision&quot;</span><span class="nt">&gt;</span>
-    ...
-        <span class="nt">&lt;surface&gt;</span>
-            <span class="nt">&lt;friction&gt;</span>
-                <span class="nt">&lt;ode&gt;</span>
-                    <span class="nt">&lt;mu&gt;</span>1<span class="nt">&lt;/mu&gt;</span>
-                    <span class="nt">&lt;mu2&gt;</span>1<span class="nt">&lt;/mu2&gt;</span>
-                    <span class="nt">&lt;fdir1&gt;</span>1 0 0<span class="nt">&lt;/fdir1&gt;</span>
-                <span class="nt">&lt;/ode&gt;</span>
-            <span class="nt">&lt;/friction&gt;</span>
-        <span class="nt">&lt;/surface&gt;</span>
-    <span class="nt">&lt;/collision&gt;</span>
-<span class="nt">&lt;/link&gt;</span>
-</code></pre></div>
-<h2 id="comparison">Comparison</h2>
-<p><img alt="friction sxs" src="docs/friction_sxs.gif" /></p>
-<p>From left to right:</p>
-<p>Cube1: Default friction.  <a href="http://sdformat.org/">sdformat</a> states that if no friction is set, mu1 and mu2 are set to 1 (high friction). Therefore, this cube shouldn't move.</p>
-<p>Cube2: <code>mu=1</code>, <code>mu2=0</code>.  The ramp is pointed down the <code>X</code> axis.  Therefore, I expect that with a high mu along that axis, the cube will not move</p>
-<p>Cube3: <code>mu=0</code>, <code>mu2=1</code>.  The ramp is pointed down the <code>X</code> axis.  Therefore, I expect that with no friction along this direction, the cube will move down the ramp.</p>
-<p>Cube4: <code>mu=1</code>, <code>mu2=0</code>, <code>fdir1=1 0 0</code> (pointed down the ramp).  Since the mu value is aligned with the ramp, I expect the block to stay still.</p>
-<p>Cube5: <code>mu=1</code>, <code>mu2=0</code>, <code>fdir1=0 1 0</code> (pointed toward the sides of the ramp).  Since the mu value is perpendicular to the ramp, I expect the block to move.</p>
-<p>Cube6: <code>mu=1</code>, <code>mu2=0</code>, <code>fdir1=0 0 1</code> (pointed up).  Since the mu value is perpendicular to the ramp, I expect the block to move.</p>
-<p>Cube7: Cube4, rotated along the Y-axis  Since the mu value is rotated to be perpendicular to the ramp, I expect the block to move.</p>
-<p>Cube8: <code>mu=1</code> rotated along the X-axis.  Since only setting mu should set both values, the rotation shouldn't matter and the block shouldn't move.</p>
-<p>Cube9: <code>mu=1</code> rotated along the X and Y-axis.  Since only setting mu should set both values, the rotation shouldn't matter and the block shouldn't move.</p>
-<p>Notably, neither behaved quite how I was expecting.  In Gazebo, the mu and mu2 arguments acted on the opposite axis as I expected, with the world y frame corresponding to mu and the world x frame corresponding to mu2. In Ignition, the mu and mu2 arguments act on the axis that I expected, with x corresponding to mu and y corresponding to mu2. However, setting the fdir1 direction to orientations perpendicular to the ramp direction incorrectly makes the box stay on the ramp.</p>
+                <h1 id="inertia">Inertia</h1>
+<p>Inertia is the resistance of any physical object to any change in its velocity. It is an important element in simulation, as it lets the physics simulator calculate the correct dynamics of an object in simulation.</p>
+<p><img alt="ignition vs gazebo side by side" src="docs/inertia_sxs.gif" /></p>
+<p>From left to right: cube, solid sphere, hollow sphere, solid cylinder, hollow cylinder. All shapes have the same mass and are modeled with high friction. The high friction causes the cube to stay in place, while the other shapes are able to roll down the ramp as expected.</p>
+<p>Both Ignition and Gazebo work as expected.</p>
                 
               
               
@@ -526,7 +440,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../bounce/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../friction-pyramid/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -535,25 +449,11 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Bounce
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../friction-pyramid/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
                 Friction Pyramid
               </div>
             </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
           </a>
+        
         
       </nav>
     </div>
