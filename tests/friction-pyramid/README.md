@@ -7,4 +7,4 @@ During tests of [friction](/tests/friction/README.md) I noticed that Gazebo and 
 ![ignition](docs/friction_pyramid_ignition.png)
 ![gazebo](docs/friction_pyramid_gazebo.png)
 
-Also of note is that while the ignition simulation produces much smoother results, it comes at a cost of the real-time factor.
+Also of note is that while the ignition simulation produces much smoother results, it comes at a cost to the real-time factor.
