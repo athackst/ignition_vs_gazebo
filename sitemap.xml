@@ -19,5 +19,9 @@
      <loc>https://athackst.github.io/ignition_vs_gazebo/tests/inertia/</loc>
      <lastmod>2020-11-21</lastmod>
      <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://athackst.github.io/ignition_vs_gazebo/tests/wheel-drift/</loc>
+     <lastmod>2020-11-21</lastmod>
+     <changefreq>daily</changefreq>
     </url>
 </urlset>
