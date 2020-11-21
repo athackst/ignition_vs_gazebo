@@ -403,53 +403,83 @@
     </model>
   </xacro:macro>
 
-  <xacro:macro name="turtlebot" params="name color *pose *dynamics">
+  <xacro:macro name="two_wheel_static" params="name color *pose *dynamics">
     <xacro:property name="wheel_width" value="0.018"/>
     <xacro:property name="wheel_radius" value="0.033"/>
     <xacro:property name="body_length" value="0.140"/>
     <xacro:property name="track_width" value="0.140"/>
     <xacro:property name="body_height" value="0.143"/>
+    <xacro:property name="base_height" value="${body_height/2 + wheel_radius}"/>
     <model name="${name}">
       <xacro:insert_block name="pose"/>
       <xacro:wheel_base name="base_link" mass="8.2573504e-01" length="${body_length}" width="${track_width}" height="${body_height}">
-        <pose>-0.032 0 0.070 0 0 0</pose>
+        <pose>-0.032 0 ${base_height} 0 0 0</pose>
       </xacro:wheel_base>
       <xacro:wheel name="right_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="2.8498940e-02">
-        <pose relative_to="base_link">0.0 -0.08 ${wheel_radius-0.07} ${-pi/2} 0 0</pose>
+        <pose relative_to="base_link">${body_length/2} -0.08 ${wheel_radius-base_height} ${-pi/2} 0 0</pose>
         <xacro:insert_block name="dynamics"/>
       </xacro:wheel>
       <xacro:wheel name="left_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="2.8498940e-02">
-        <pose relative_to="base_link">0.0 0.08 ${wheel_radius-0.07} ${-pi/2} 0 0</pose>
+        <pose relative_to="base_link">${body_length/2} 0.08 ${wheel_radius-base_height} ${-pi/2} 0 0</pose>
         <xacro:insert_block name="dynamics" />
       </xacro:wheel>
       <xacro:castor name="castor" parent="base_link" radius="0.030" color="${color}" mass="0.005">
-        <pose relative_to="base_link">-0.081 0 ${0.030-0.07} ${pi/2} 0 0</pose>
+        <pose relative_to="base_link">${-body_length/2} 0 ${0.030-base_height} ${pi/2} 0 0</pose>
       </xacro:castor>
       <static>0</static>
     </model>
   </xacro:macro>
 
-  <xacro:macro name="turtlebot_castor" params="name color *pose *dynamics">
+  <xacro:macro name="three_wheel" params="name color *pose *dynamics">
     <xacro:property name="wheel_width" value="0.018"/>
     <xacro:property name="wheel_radius" value="0.033"/>
     <xacro:property name="body_length" value="0.140"/>
     <xacro:property name="track_width" value="0.140"/>
     <xacro:property name="body_height" value="0.143"/>
+    <xacro:property name="base_height" value="${body_height/2 + wheel_radius}"/>
     <model name="${name}">
       <xacro:insert_block name="pose"/>
       <xacro:wheel_base name="base_link" mass="8.2573504e-01" length="${body_length}" width="${track_width}" height="${body_height}">
-        <pose>-0.032 0 0.070 0 0 0</pose>
+        <pose>-0.032 0 ${base_height} 0 0 0</pose>
       </xacro:wheel_base>
       <xacro:wheel name="right_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="2.8498940e-02">
-        <pose relative_to="base_link">0.0 -0.08 ${wheel_radius-0.07} ${-pi/2} 0 0</pose>
+        <pose relative_to="base_link">${body_length/2} -0.08 ${wheel_radius-base_height} ${-pi/2} 0 0</pose>
         <xacro:insert_block name="dynamics"/>
       </xacro:wheel>
       <xacro:wheel name="left_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="2.8498940e-02">
-        <pose relative_to="base_link">0.0 0.08 ${wheel_radius-0.07} ${-pi/2} 0 0</pose>
+        <pose relative_to="base_link">${body_length/2} 0.08 ${wheel_radius-base_height} ${-pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <xacro:wheel name="front_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="2.8498940e-02">
+        <pose relative_to="base_link">${-body_length/2} 0 ${wheel_radius-base_height} ${-pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics" />
+      </xacro:wheel>
+      <static>0</static>
+    </model>
+  </xacro:macro>
+
+  <xacro:macro name="two_wheel_castor" params="name color *pose *dynamics">
+    <xacro:property name="wheel_width" value="0.018"/>
+    <xacro:property name="wheel_radius" value="0.033"/>
+    <xacro:property name="body_length" value="0.140"/>
+    <xacro:property name="track_width" value="0.140"/>
+    <xacro:property name="body_height" value="0.143"/>
+    <xacro:property name="base_height" value="${body_height/2 + wheel_radius}"/>
+    <model name="${name}">
+      <xacro:insert_block name="pose"/>
+      <xacro:wheel_base name="base_link" mass="8.2573504e-01" length="${body_length}" width="${track_width}" height="${body_height}">
+        <pose>-0.032 0 ${base_height} 0 0 0</pose>
+      </xacro:wheel_base>
+      <xacro:wheel name="right_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="2.8498940e-02">
+        <pose relative_to="base_link">${body_length/2} -0.08 ${wheel_radius-base_height} ${-pi/2} 0 0</pose>
+        <xacro:insert_block name="dynamics"/>
+      </xacro:wheel>
+      <xacro:wheel name="left_wheel" parent="base_link" width="${wheel_width}" radius="${wheel_radius}" color="${color}" mass="2.8498940e-02">
+        <pose relative_to="base_link">${body_length/2} 0.08 ${wheel_radius-base_height} ${-pi/2} 0 0</pose>
         <xacro:insert_block name="dynamics" />
       </xacro:wheel>
       <xacro:compound_wheel name="active_castor" parent="base_link" width="${wheel_width}" radius="0.030" color="${color}" mass="0.005">
-        <pose relative_to="base_link">-0.081 0 ${0.030-0.07} ${pi/2} 0 0</pose>
+        <pose relative_to="base_link">${-body_length/2} 0 ${0.030-base_height} ${pi/2} 0 0</pose>
         <xacro:insert_block name="dynamics" />
       </xacro:compound_wheel>
       <static>0</static>

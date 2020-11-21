@@ -18,17 +18,23 @@
     </dynamics>
   </xacro:two_wheel>
 
-  <xacro:turtlebot name="turtlebot" color="1 1 0 1">
+  <xacro:two_wheel_static name="two_wheel_static" color="1 1 0 1">
     <pose relative_to="ground_plane">1 1 0 0 0 0</pose>
     <dynamics>
     </dynamics>
-  </xacro:turtlebot>
+  </xacro:two_wheel_static>
 
-  <xacro:turtlebot_castor name="turtlebot_castor" color="1 1 0 1">
+  <xacro:two_wheel_castor name="two_wheel_castor" color="1 1 0 1">
     <pose relative_to="ground_plane">1 2 0 0 0 0</pose>
     <dynamics>
     </dynamics>
-  </xacro:turtlebot_castor>
+  </xacro:two_wheel_castor>
+
+  <xacro:three_wheel name="three_wheel" color="1 1 0 1">
+    <pose relative_to="ground_plane">1 3 0 0 0 0</pose>
+    <dynamics>
+    </dynamics>
+  </xacro:three_wheel>
 
   <xacro:four_wheel name="four_wheel" mass="1" wheel_width="0.04" wheel_radius="0.0355" track_width="0.12" body_length="0.165" body_height="0.165" color="1 1 0 1">
     <pose relative_to="ground_plane">2 0 0 0 0 0</pose>
