@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
      <loc>https://athackst.github.io/ignition_vs_gazebo/</loc>
-     <lastmod>2020-11-21</lastmod>
+     <lastmod>2020-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://athackst.github.io/ignition_vs_gazebo/tests/bounce/</loc>
-     <lastmod>2020-11-21</lastmod>
+     <lastmod>2020-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://athackst.github.io/ignition_vs_gazebo/tests/friction/</loc>
-     <lastmod>2020-11-21</lastmod>
+     <lastmod>2020-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://athackst.github.io/ignition_vs_gazebo/tests/friction-pyramid/</loc>
-     <lastmod>2020-11-21</lastmod>
+     <lastmod>2020-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://athackst.github.io/ignition_vs_gazebo/tests/inertia/</loc>
-     <lastmod>2020-11-21</lastmod>
+     <lastmod>2020-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://athackst.github.io/ignition_vs_gazebo/tests/wheel-drift/</loc>
-     <lastmod>2020-11-21</lastmod>
+     <lastmod>2020-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
