@@ -43,4 +43,4 @@ A `restitution_coefficient` must be set on both collision surfaces.  For balls t
 Gazebo | Ignition with restitution coefficient ranging from 1 to 0 in 0.1 increments.
 
 
-Ignition does not currently model bounce.
+Ignition edifice now supports bounce!

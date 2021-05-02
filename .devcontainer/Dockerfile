@@ -1,4 +1,4 @@
-FROM athackst/ros:melodic-dev
+FROM athackst/ros:noetic-gazebo
 
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
@@ -8,11 +8,8 @@ RUN apt-get update && apt-get install -y wget git-lfs\
   && wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add - \
   && apt-get update \
   && apt-get install -y \
-    # Install gazebo11
-    gazebo11 \
-    ros-melodic-gazebo11-* \
-    # Install ignition citadel
-    ignition-citadel
+    # Install ignition edifice
+    ignition-edifice
 
 ARG WORKSPACE
 RUN echo "if [ -f ${WORKSPACE}/devel/setup.bash ]; then source ${WORKSPACE}/devel/setup.bash; fi" >> /home/ros/.bashrc
