@@ -25,7 +25,7 @@
           <property type='bool' key='showTitleBar'>false</property>
           <property type="string" key="state">docked</property>
         </ignition-gui>
-        <engine>ogre</engine>
+        <engine>ogre2</engine>
         <scene>scene</scene>
         <ambient_light>0.4 0.4 0.4</ambient_light>
         <background_color>0.8 0.8 0.8</background_color>
@@ -139,8 +139,8 @@
     },
     { :name => "boxes_mu2",
       :color => "1 0 0 1",
-      :mu => "0.1",
-      :mu2 => "0.5"
+      :mu => "0.05",
+      :mu2 => "0.1"
     }
   ]
   test_set.each_with_index do |test, h|
@@ -191,7 +191,7 @@
             <material>
               <ambient> .3 .3 .3  0.5</ambient>
               <diffuse> .7 .7 .7  0.5</diffuse>
-              <specular> 0.01 0.01 0.01 1.000000 1.500000</specular>
+              <specular> 0.01 0.01 0.01 1.000000</specular>
             </material>
           </visual>
           <gravity>0</gravity>
@@ -236,7 +236,7 @@
             <material>
               <ambient><%= color %></ambient>
               <diffuse><%= color %></diffuse>
-              <specular>0.1 0.1 0.1 1 1</specular>
+              <specular>0.1 0.1 0.1 1</specular>
             </material>
           </visual>
         </link>
