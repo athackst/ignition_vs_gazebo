@@ -2,7 +2,7 @@
 
 Both Gazebo and Ignition use a friction pyramid approximation.  
 
-During tests of [friction](/tests/friction/README.md) I noticed that Gazebo and Ignition set the values differently in x and y when using the default world frame which is clearly shown below
+During tests of [friction](../friction/README.md) I noticed that Gazebo and Ignition set the values differently in x and y when using the default world frame which is clearly shown below
 
 ![ignition](docs/friction_pyramid_ignition.png)
 ![gazebo](docs/friction_pyramid_gazebo.png)

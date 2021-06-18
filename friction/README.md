@@ -29,7 +29,7 @@ These two directions get modeled together using a simplified friction pyramid mo
 
 From left to right:
 
-Cube1: Default friction.  [sdformat](http://sdformat.org/) states that if no friction is set, mu1 and mu2 are set to 1 (high friction). Therefore, this cube shouldn't move.
+Cube1: Default friction.  [sdformat](http://sdformat.org) states that if no friction is set, mu1 and mu2 are set to 1 (high friction). Therefore, this cube shouldn't move.
 
 Cube2: `mu=1`, `mu2=0`.  The ramp is pointed down the `X` axis.  Therefore, I expect that with a high mu along that axis, the cube will not move
 
