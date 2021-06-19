@@ -45,6 +45,6 @@ Gazebo | Ignition with restitution coefficient ranging from 1 to 0 in 0.1 increm
 
 Ignition does not currently model bounce.
 
-*Update* Ignition now models bounce!
-
-![ignition updated](media/bounce_ignition_update.gif)
+!!! note "Update"
+    Ignition now models bounce!
+    ![ignition updated](media/bounce_ignition_update.gif)
