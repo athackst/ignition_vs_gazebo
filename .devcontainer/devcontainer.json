@@ -8,7 +8,11 @@
 		}
 	},
 	"settings": {
-		"terminal.integrated.shell.linux": "/bin/bash"
+		"terminal.integrated.profiles.linux": {
+			"bash": {
+				"path": "bash"
+			}
+		}
 	},
 	"runArgs": [
 		"--privileged", // For joystick tests

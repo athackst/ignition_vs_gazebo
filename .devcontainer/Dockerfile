@@ -3,11 +3,14 @@ FROM athackst/ros:melodic-dev
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y wget git-lfs\
-  && sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list' \
-  && wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add - \
-  && apt-get update \
-  && apt-get install -y \
+RUN apt-get update && apt-get install -y \
+    git-lfs \
+    sudo \
+    wget \
+    && sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list' \
+    && wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add - \
+    && sudo apt-get update \
+    && sudo apt-get install -y \
     # Install gazebo11
     gazebo11 \
     ros-melodic-gazebo11-* \
