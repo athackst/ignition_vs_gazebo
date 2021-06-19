@@ -398,7 +398,7 @@
                 
                 
                 <h1 id="friction">Friction</h1>
-<p>Friction is the resistance to motion of one object moving relative to another.  There are several different types of friction that you can model. Here we are modeling kinetic friction by setting the  coefficient of friction. The coefficient of friction in version 1.7 of the sdformat is modeled as an ODE parameter with mu as the coefficient for the “first friction direction” and mu2 as the coefficient for the “second friction direction”. There is an additional parameter, fdir1 that can specify a specific primary friction direction relative to the link, otherwise it is modeled relative to the world.</p>
+<p>Friction is the resistance to motion of one object moving relative to another.  There are several different types of friction that you can model. Here we are modeling kinetic friction by setting the coefficient of friction. The coefficient of friction in version 1.7 of the sdformat is modeled as an ODE parameter with mu as the coefficient for the first friction direction and mu2 as the coefficient for the second friction direction. There is an additional parameter, `fdir1 that can specify a specific primary friction direction relative to the link, otherwise it is modeled relative to the world.</p>
 <p>These two directions get modeled together using a simplified friction pyramid model.</p>
 <h2 id="example-code-snippet">Example code snippet</h2>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;link&gt;</span>
@@ -418,18 +418,20 @@
 <span class="nt">&lt;/link&gt;</span>
 </code></pre></div>
 <h2 id="comparison">Comparison</h2>
-<p><img alt="friction sxs" src="docs/friction_sxs.gif" /></p>
+<p><img alt="friction sxs" src="media/friction_sxs.gif" /></p>
 <p>From left to right:</p>
-<p>Cube1: Default friction.  <a href="http://sdformat.org">sdformat</a> states that if no friction is set, mu1 and mu2 are set to 1 (high friction). Therefore, this cube shouldn't move.</p>
-<p>Cube2: <code>mu=1</code>, <code>mu2=0</code>.  The ramp is pointed down the <code>X</code> axis.  Therefore, I expect that with a high mu along that axis, the cube will not move</p>
-<p>Cube3: <code>mu=0</code>, <code>mu2=1</code>.  The ramp is pointed down the <code>X</code> axis.  Therefore, I expect that with no friction along this direction, the cube will move down the ramp.</p>
-<p>Cube4: <code>mu=1</code>, <code>mu2=0</code>, <code>fdir1=1 0 0</code> (pointed down the ramp).  Since the mu value is aligned with the ramp, I expect the block to stay still.</p>
-<p>Cube5: <code>mu=1</code>, <code>mu2=0</code>, <code>fdir1=0 1 0</code> (pointed toward the sides of the ramp).  Since the mu value is perpendicular to the ramp, I expect the block to move.</p>
-<p>Cube6: <code>mu=1</code>, <code>mu2=0</code>, <code>fdir1=0 0 1</code> (pointed up).  Since the mu value is perpendicular to the ramp, I expect the block to move.</p>
-<p>Cube7: Cube4, rotated along the Y-axis  Since the mu value is rotated to be perpendicular to the ramp, I expect the block to move.</p>
-<p>Cube8: <code>mu=1</code> rotated along the X-axis.  Since only setting mu should set both values, the rotation shouldn't matter and the block shouldn't move.</p>
-<p>Cube9: <code>mu=1</code> rotated along the X and Y-axis.  Since only setting mu should set both values, the rotation shouldn't matter and the block shouldn't move.</p>
-<p>Notably, neither behaved quite how I was expecting.  In Gazebo, the mu and mu2 arguments acted on the opposite axis as I expected, with the world y frame corresponding to mu and the world x frame corresponding to mu2. In Ignition, the mu and mu2 arguments act on the axis that I expected, with x corresponding to mu and y corresponding to mu2. However, setting the fdir1 direction to orientations perpendicular to the ramp direction incorrectly makes the box stay on the ramp.</p>
+<ul>
+<li><strong>Cube1</strong> Default friction.  <a href="http://sdformat.org">sdformat</a> states that if no friction is set, mu1 and mu2 are set to 1 (high friction). Therefore, this cube shouldn't move.</li>
+<li><strong>Cube2</strong> <code>mu=1</code>, <code>mu2=0</code>.  The ramp is pointed down the <code>X</code> axis.  Therefore, I expect that with a high mu along that axis, the cube will not move</li>
+<li><strong>Cube3</strong> <code>mu=0</code>, <code>mu2=1</code>.  The ramp is pointed down the <code>X</code> axis.  Therefore, I expect that with no friction along this direction, the cube will move down the ramp.</li>
+<li><strong>Cube4</strong> <code>mu=1</code>, <code>mu2=0</code>, <code>fdir1=1 0 0</code> (pointed down the ramp).  Since the mu value is aligned with the ramp, I expect the block to stay still.</li>
+<li><strong>Cube5</strong> <code>mu=1</code>, <code>mu2=0</code>, <code>fdir1=0 1 0</code> (pointed toward the sides of the ramp).  Since the mu value is perpendicular to the ramp, I expect the block to move.</li>
+<li><strong>Cube6</strong> <code>mu=1</code>, <code>mu2=0</code>, <code>fdir1=0 0 1</code> (pointed up).  Since the mu value is perpendicular to the ramp, I expect the block to move.</li>
+<li><strong>Cube7</strong> Cube4, rotated along the Y-axis  Since the mu value is rotated to be perpendicular to the ramp, I expect the block to move.</li>
+<li><strong>Cube8</strong> <code>mu=1</code> rotated along the X-axis.  Since only setting mu should set both values, I expect the result to be rotation agnostic and remain stationary.</li>
+<li><strong>Cube9</strong> <code>mu=1</code> rotated along the X and Y-axis.  Since only setting mu should set both values, I expect the result to be rotation agnostic and remain stationary.</li>
+</ul>
+<p>Notably, neither behaved quite how I was expecting.  In Gazebo, the mu and mu2 arguments acted on the opposite axis as I expected, with the world y frame corresponding to mu and the world x frame corresponding to mu2. In Ignition, the mu and mu2 arguments act on the axis that I expected, with x corresponding to mu and y corresponding to mu2. However, setting the <code>fdir1</code> direction to orientations perpendicular to the ramp direction incorrectly makes the box remain stationary on the ramp.</p>
                 
               
               

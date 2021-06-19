@@ -398,14 +398,14 @@
                 
                 
                 <h1 id="bounce">Bounce</h1>
-<p>Bounce is the rebound or reflection after striking a surface (such as the ground).  In the simulation, this is represented by the <code>restitution_coefficient</code>.</p>
+<p>Bounce is the rebound or reflection after striking a surface (such as the ground).  In the simulation, this is defined by the <code>restitution_coefficient</code> parameter.</p>
 <p>To model bounce in Gazebo, you need to set 3 parameters in the SDF.</p>
 <ol>
 <li><code>restitution_coefficient</code> [0,1] Where 0 is no bounce, and 1 is pure bounce</li>
 <li><code>threshold</code> The penetration threshold needed to apply restitution force</li>
 <li><code>max_vel</code> The maximum velocity that the restitution force can cause.</li>
 </ol>
-<p>A <code>restitution_coefficient</code> must be set on both collision surfaces.  For balls to achieve infinite bounce with the ground in this simulation, the ground was given a <code>restitution_coefficient=1</code></p>
+<p>A <code>restitution_coefficient</code> must be set on both collision surfaces.  For balls to achieve infinite bounce with the ground in this simulation, the ground was given a <code>restitution_coefficient=1</code>.</p>
 <h2 id="example-code-snippet">Example code snippet</h2>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;link&gt;</span>
 ...
