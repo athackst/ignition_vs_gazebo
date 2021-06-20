@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://athackst.github.io/ignition_vs_gazebo/friction-pyramid/">
+        <link rel="canonical" href="https://athackst.github.io/ignition_vs_gazebo/joint-friction/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.7">
     
     
       
-        <title>Friction Pyramid - athackst/ignition_vs_gazebo</title>
+        <title>Joint Friction - athackst/ignition_vs_gazebo</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#friction-pyramid" class="md-skip">
+        <a href="#joint-friction" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Friction Pyramid
+              Joint Friction
             
           </span>
         </div>
@@ -248,21 +248,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../friction-pyramid/" class="md-nav__link">
         Friction Pyramid
       </a>
-      
     </li>
   
 
@@ -303,11 +293,21 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../joint-friction/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Joint Friction
       </a>
+      
     </li>
   
 
@@ -372,12 +372,16 @@
               
                 
                 
-                <h1 id="friction-pyramid">Friction Pyramid</h1>
-<p>Both Gazebo and Ignition use a friction pyramid approximation.  </p>
-<p>During tests of <a href="../friction/">friction</a>, I noticed that Gazebo and Ignition set the values differently in x and y when using the default world frame. This difference is visualized below by the differences in shape produced from the same simulation description file.</p>
-<p><img alt="ignition" src="media/friction_pyramid_ignition.png" />
-<img alt="gazebo" src="media/friction_pyramid_gazebo.png" /></p>
-<p>Notably, the ignition simulation produces much smoother results, but it comes at a cost to the real-time factor.</p>
+                <h1 id="joint-friction">Joint Friction</h1>
+<p>Joint friction reduces a force based on how heavy an object is.</p>
+<p>The force balance equation:</p>
+<div class="arithmatex">\[
+F=m\ddot{x}+b\dot{x}+kx
+\]</div>
+<p>where <span class="arithmatex">\(F\)</span> is an applied force, x is position, <span class="arithmatex">\(\dot{x}\)</span> is velocity, and <span class="arithmatex">\(\ddot{x}\)</span> is acceleration. <span class="arithmatex">\(m\)</span> is mass, <span class="arithmatex">\(k\)</span> is a spring constant, and <span class="arithmatex">\(b\)</span> is a viscous damping term.</p>
+<p>When you plot applied torque versus speed for the unloaded system, the friction losses will be the y-intercept.</p>
+<p><img alt="joint damping gazebo" src="media/jointfriction_gazebo.gif" /></p>
+<p><img alt="joint damping ignition" src="media/jointfriction_ignition.gif" /></p>
                 
               
               
@@ -397,7 +401,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../friction/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Friction" rel="prev">
+        <a href="../joint-damping/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Joint Damping" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -406,20 +410,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Friction
+              Joint Damping
             </div>
           </div>
         </a>
       
       
         
-        <a href="../inertia/" class="md-footer__link md-footer__link--next" aria-label="Next: Inertia" rel="next">
+        <a href="../joint-spring/" class="md-footer__link md-footer__link--next" aria-label="Next: Joint Spring Constant" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Inertia
+              Joint Spring Constant
             </div>
           </div>
           <div class="md-footer__button md-icon">
