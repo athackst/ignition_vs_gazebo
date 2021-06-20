@@ -9,21 +9,21 @@
       
       
       
-        <link rel="canonical" href="https://athackst.github.io/ignition_vs_gazebo/">
+        <link rel="canonical" href="https://athackst.github.io/ignition_vs_gazebo/joint-damping/">
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
     
     
       
-        <title>athackst/ignition_vs_gazebo</title>
+        <title>Joint Damping - athackst/ignition_vs_gazebo</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.ca7ac06f.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ca7ac06f.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.f1a3b89f.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
         
           
           
@@ -42,7 +42,7 @@
     
     
     
-      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
     
       
@@ -72,7 +72,7 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="green" data-md-color-accent="green">
   
     
-    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ignition_vs_gazebo" class="md-skip">
+        <a href="#joint-damping" class="md-skip">
           Skip to content
         </a>
       
@@ -91,7 +91,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="athackst/ignition_vs_gazebo" class="md-header__button md-logo" aria-label="athackst/ignition_vs_gazebo" data-md-component="logo">
+    <a href=".." title="athackst/ignition_vs_gazebo" class="md-header__button md-logo" aria-label="athackst/ignition_vs_gazebo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ignition_vs_gazebo
+              Joint Damping
             
           </span>
         </div>
@@ -184,7 +184,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="athackst/ignition_vs_gazebo" class="md-nav__button md-logo" aria-label="athackst/ignition_vs_gazebo" data-md-component="logo">
+    <a href=".." title="athackst/ignition_vs_gazebo" class="md-nav__button md-logo" aria-label="athackst/ignition_vs_gazebo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -214,85 +214,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          ignition_vs_gazebo
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         ignition_vs_gazebo
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#quickstart" class="md-nav__link">
-    Quickstart
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#test-setup" class="md-nav__link">
-    Test setup
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#development-environment" class="md-nav__link">
-    Development Environment
-  </a>
-  
-    <nav class="md-nav" aria-label="Development Environment">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#vscode-container" class="md-nav__link">
-    VSCode Container
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#local" class="md-nav__link">
-    Local
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -305,7 +231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="bounce/" class="md-nav__link">
+      <a href="../bounce/" class="md-nav__link">
         Bounce
       </a>
     </li>
@@ -320,7 +246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="friction/" class="md-nav__link">
+      <a href="../friction/" class="md-nav__link">
         Friction
       </a>
     </li>
@@ -335,7 +261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="friction-pyramid/" class="md-nav__link">
+      <a href="../friction-pyramid/" class="md-nav__link">
         Friction Pyramid
       </a>
     </li>
@@ -350,7 +276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="inertia/" class="md-nav__link">
+      <a href="../inertia/" class="md-nav__link">
         Inertia
       </a>
     </li>
@@ -363,11 +289,21 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="joint-damping/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Joint Damping
       </a>
+      
     </li>
   
 
@@ -380,7 +316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="joint-friction/" class="md-nav__link">
+      <a href="../joint-friction/" class="md-nav__link">
         Joint Friction
       </a>
     </li>
@@ -395,7 +331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="joint-spring/" class="md-nav__link">
+      <a href="../joint-spring/" class="md-nav__link">
         Joint Spring Constant
       </a>
     </li>
@@ -410,7 +346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="wheel-drift/" class="md-nav__link">
+      <a href="../wheel-drift/" class="md-nav__link">
         Wheel drift
       </a>
     </li>
@@ -436,55 +372,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#quickstart" class="md-nav__link">
-    Quickstart
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#test-setup" class="md-nav__link">
-    Test setup
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#development-environment" class="md-nav__link">
-    Development Environment
-  </a>
-  
-    <nav class="md-nav" aria-label="Development Environment">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#vscode-container" class="md-nav__link">
-    VSCode Container
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#local" class="md-nav__link">
-    Local
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -496,24 +383,16 @@
               
                 
                 
-                <h1 id="ignition_vs_gazebo">ignition_vs_gazebo</h1>
-<p><img alt="ignition vs. gazebo" src="https://github.com/athackst/ignition_vs_gazebo/raw/main/.github/ignition_vs_gazebo.png" /></p>
-<p>A collection of tests between gazebo and ignition.  For a detailed analysis, see my article comparing <a href="https://www.allisonthackston.com/articles/ignition-vs-gazebo.html">ignition and gazebo</a>.</p>
-<h2 id="quickstart">Quickstart</h2>
-<p>All tests are located under the <code>tests</code> directory.</p>
-<p>Each test has a standalone script to launch the simulator.</p>
-<p>Simply run <code>./start_gazebo.sh</code> or <code>./start_ign.sh</code> to launch the test with the desired simulator.</p>
-<h2 id="test-setup">Test setup</h2>
-<p>Tests are created using <code>xacro</code>.  This ensures that the same properties are used in both simulators.  The SDF also sets several GUI properties, which are not compatible between programs.  A separate macro was created for each simulator and included in its respective test.</p>
-<h2 id="development-environment">Development Environment</h2>
-<h3 id="vscode-container">VSCode Container</h3>
-<p>The test setup includes a VSCode container IDE, which pre-installs gazebo 11 and ignition citadel.  If you're on a Linux system, the scripts will launch the respective simulation (including Gazebo GUI).</p>
-<h3 id="local">Local</h3>
-<p>If you wish to run the tests natively instead, you'll need to have Gazebo and Ignition installed.</p>
-<ul>
-<li><a href="http://gazebosim.org/tutorials?tut=install_ubuntu&amp;ver=11.0">Gazebo 11</a></li>
-<li><a href="https://ignitionrobotics.org/docs/citadel/install_ubuntu">Ignition Citadel</a></li>
-</ul>
+                <h1 id="joint-damping">Joint Damping</h1>
+<p>Joint damping reduces a force based on how fast an object is moving.</p>
+<p>The force balance equation:</p>
+<p>$$
+F=m\ddot{x}+b\dot{x}+kx
+$$</p>
+<p>where $F$ is an applied force, x is position, $\dot{x}$ is velocity, and $\ddot{x}$ is acceleration. $m$ is mass, $k$ is a spring constant, and $b$ is a viscous damping term.</p>
+<p>When you plot applied torque versus speed for the unloaded system, the damping (viscous losses) will be the slope.</p>
+<p><img alt="joint damping gazebo" src="media/jointdamping_gazebo.gif" /></p>
+<p><img alt="joint damping ignition" src="media/jointdamping_ignition.gif" /></p>
                 
               
               
@@ -532,15 +411,30 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
+        
+        <a href="../inertia/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Inertia" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Inertia
+            </div>
+          </div>
+        </a>
+      
       
         
-        <a href="bounce/" class="md-footer__link md-footer__link--next" aria-label="Next: Bounce" rel="next">
+        <a href="../joint-friction/" class="md-footer__link md-footer__link--next" aria-label="Next: Joint Friction" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Bounce
+              Joint Friction
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -600,10 +494,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.76f349be.min.js"></script>
+      <script src="../assets/javascripts/bundle.76f349be.min.js"></script>
       
     
   </body>
