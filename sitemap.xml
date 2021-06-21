@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>http://localhost/</loc>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/</loc>
          <lastmod>2021-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://localhost/bounce/</loc>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/bounce/</loc>
          <lastmod>2021-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://localhost/friction/</loc>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/friction/</loc>
          <lastmod>2021-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://localhost/friction-pyramid/</loc>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/friction-pyramid/</loc>
          <lastmod>2021-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://localhost/inertia/</loc>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/inertia/</loc>
          <lastmod>2021-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://localhost/wheel-drift/</loc>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/wheel-drift/</loc>
          <lastmod>2021-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
