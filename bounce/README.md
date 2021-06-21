@@ -48,3 +48,4 @@ Ignition does not currently model bounce.
 !!! note "Update"
     Ignition now models bounce!
     ![ignition updated](media/bounce_ignition_update.gif)
+
