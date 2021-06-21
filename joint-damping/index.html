@@ -291,9 +291,46 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Joint Damping
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Joint Damping
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-code-snippet" class="md-nav__link">
+    Example code snippet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison" class="md-nav__link">
+    Comparison
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -337,6 +374,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../wheel/" class="md-nav__link">
+        Wheel Joints
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../wheel-drift/" class="md-nav__link">
         Wheel drift
       </a>
@@ -363,6 +415,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-code-snippet" class="md-nav__link">
+    Example code snippet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison" class="md-nav__link">
+    Comparison
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -382,8 +456,58 @@ F=m\ddot{x}+b\dot{x}+kx
 \]</div>
 <p>where <span class="arithmatex">\(F\)</span> is an applied force, x is position, <span class="arithmatex">\(\dot{x}\)</span> is velocity, and <span class="arithmatex">\(\ddot{x}\)</span> is acceleration. <span class="arithmatex">\(m\)</span> is mass, <span class="arithmatex">\(k\)</span> is a spring constant, and <span class="arithmatex">\(b\)</span> is a viscous damping term.</p>
 <p>When you plot applied torque versus speed for the unloaded system, the damping (viscous losses) will be the slope.</p>
+<h2 id="example-code-snippet">Example code snippet</h2>
+<div class="highlight"><pre><span></span><code>    <span class="c">&lt;!-- Damping --&gt;</span>
+      <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;wheel_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;revolute&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;parent&gt;</span>wheel_support<span class="nt">&lt;/parent&gt;</span>
+        <span class="nt">&lt;child&gt;</span>wheel<span class="nt">&lt;/child&gt;</span>
+        <span class="nt">&lt;pose</span> <span class="na">relative_to=</span><span class="s">&quot;wheel_support&quot;</span><span class="nt">&gt;</span>0 0 0 0 0 0<span class="nt">&lt;/pose&gt;</span>
+        <span class="nt">&lt;axis&gt;</span>
+          <span class="nt">&lt;xyz&gt;</span>0 0 1<span class="nt">&lt;/xyz&gt;</span>
+          <span class="nt">&lt;dynamics&gt;</span>
+            <span class="nt">&lt;damping&gt;</span>1<span class="nt">&lt;/damping&gt;</span>
+            <span class="nt">&lt;friction&gt;</span>0<span class="nt">&lt;/friction&gt;</span>
+          <span class="nt">&lt;/dynamics&gt;</span>
+          <span class="nt">&lt;limit&gt;</span>
+            <span class="nt">&lt;lower&gt;</span>-1e+16<span class="nt">&lt;/lower&gt;</span>
+            <span class="nt">&lt;upper&gt;</span>1e+16<span class="nt">&lt;/upper&gt;</span>
+          <span class="nt">&lt;/limit&gt;</span>
+        <span class="nt">&lt;/axis&gt;</span>
+      <span class="nt">&lt;/joint&gt;</span>
+</code></pre></div>
+<h2 id="comparison">Comparison</h2>
 <p><img alt="joint damping gazebo" src="media/jointdamping_gazebo.gif" /></p>
 <p><img alt="joint damping ignition" src="media/jointdamping_ignition.gif" /></p>
+<table>
+<thead>
+<tr>
+<th>color</th>
+<th>damping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>green</td>
+<td>0</td>
+</tr>
+<tr>
+<td>teal</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>blue</td>
+<td>1</td>
+</tr>
+<tr>
+<td>pink</td>
+<td>1.5</td>
+</tr>
+<tr>
+<td>red</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
                 
               
               
