@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://athackst.github.io/ignition_vs_gazebo/friction-pyramid/">
+        <link rel="canonical" href="http://localhost/friction-pyramid/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.7">
     
     
       
-        <title>Friction Pyramid - athackst/ignition_vs_gazebo</title>
+        <title>Friction Pyramid - athackst.mkdocs</title>
       
     
     
@@ -82,7 +82,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="athackst/ignition_vs_gazebo" class="md-header__button md-logo" aria-label="athackst/ignition_vs_gazebo" data-md-component="logo">
+    <a href=".." title="athackst.mkdocs" class="md-header__button md-logo" aria-label="athackst.mkdocs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -95,7 +95,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            athackst/ignition_vs_gazebo
+            athackst.mkdocs
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -175,13 +175,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="athackst/ignition_vs_gazebo" class="md-nav__button md-logo" aria-label="athackst/ignition_vs_gazebo" data-md-component="logo">
+    <a href=".." title="athackst.mkdocs" class="md-nav__button md-logo" aria-label="athackst.mkdocs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    athackst/ignition_vs_gazebo
+    athackst.mkdocs
   </label>
   
     <div class="md-nav__source">
@@ -292,51 +292,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../joint-damping/" class="md-nav__link">
-        Joint Damping
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../joint-friction/" class="md-nav__link">
-        Joint Friction
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../joint-spring/" class="md-nav__link">
-        Joint Spring Constant
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../wheel-drift/" class="md-nav__link">
         Wheel drift
       </a>
@@ -376,10 +331,10 @@
                 
                 <h1 id="friction-pyramid">Friction Pyramid</h1>
 <p>Both Gazebo and Ignition use a friction pyramid approximation.  </p>
-<p>During tests of <a href="../friction/">friction</a>, I noticed that Gazebo and Ignition set the values differently in x and y when using the default world frame. This difference is visualized below by the differences in shape produced from the same simulation description file.</p>
-<p><img alt="ignition" src="media/friction_pyramid_ignition.png" />
-<img alt="gazebo" src="media/friction_pyramid_gazebo.png" /></p>
-<p>Notably, the ignition simulation produces much smoother results, but it comes at a cost to the real-time factor.</p>
+<p>During tests of <a href="../friction/">friction</a> I noticed that Gazebo and Ignition set the values differently in x and y when using the default world frame which is clearly shown below</p>
+<p><img alt="ignition" src="docs/friction_pyramid_ignition.png" />
+<img alt="gazebo" src="docs/friction_pyramid_gazebo.png" /></p>
+<p>Also of note is that while the ignition simulation produces much smoother results, it comes at a cost to the real-time factor.</p>
                 
               
               
