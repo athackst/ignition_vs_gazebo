@@ -30,12 +30,13 @@
 	"postCreateCommand": "sudo apt-get update && rosdep update && rosdep install --from-paths . --ignore-src -y",
 	"remoteUser": "ros",
 	"extensions": [
+		"dotjoshjohnson.xml",
 		"ms-iot.vscode-ros",
 		"ms-vscode.cpptools",
 		"redhat.vscode-yaml",
-		"znck.grammarly",
+		"streetsidesoftware.code-spell-checker",
 		"twxs.cmake",
 		"yzhang.markdown-all-in-one",
-		"dotjoshjohnson.xml"
+		"znck.grammarly"
 	]
 }
