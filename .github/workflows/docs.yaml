@@ -24,6 +24,3 @@ jobs:
           directory: site
           url_ignore_re: |
             http://sdformat.org/*
-            http://.*gazebosim.org/*
-
-
