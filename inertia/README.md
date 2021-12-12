@@ -7,3 +7,7 @@ Inertia is the resistance of any physical object to any change in its velocity. 
 From left to right: cube, solid sphere, hollow sphere, solid cylinder, hollow cylinder. All shapes have the same mass and are modeled with high friction. The high friction causes the cube to stay in place, while the other shapes are able to roll down the ramp as expected.
 
 Both Ignition and Gazebo work as expected.
+
+...Except in Edifice, where the shapes accelerate to infinity for some reason.
+
+![ignition edifice inertia](docs/inertia_ignition_edifice.gif)

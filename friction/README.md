@@ -27,6 +27,11 @@ These two directions get modeled together using a simplified friction pyramid mo
 ## Comparison
 ![friction sxs](docs/friction_sxs.gif)
 
+Update: Edifice
+![friction Edifice](docs/friction_ignition_edifice.gif)
+
+Edifice behaves even less like I expect with friction.
+
 From left to right:
 
 Cube1: Default friction.  [sdformat](http://sdformat.org/) states that if no friction is set, mu1 and mu2 are set to 1 (high friction). Therefore, this cube shouldn't move.
