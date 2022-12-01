@@ -27,4 +27,4 @@ The test setup includes a VSCode container IDE, which pre-installs gazebo 11 and
 If you wish to run the tests natively instead, you'll need to have Gazebo and Ignition installed.
 
 * [Gazebo 11](http://gazebosim.org/tutorials?tut=install_ubuntu&ver=11.0)
-* [Ignition Citadel](https://ignitionrobotics.org/docs/citadel/install_ubuntu)
+* [Ignition Citadel](https://gazebosim.org/docs/citadel/install_ubuntu)
