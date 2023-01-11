@@ -526,23 +526,23 @@ F=m\ddot{x}+b\dot{x}+kx
 <p>where <span class="arithmatex">\(F\)</span> is an applied force, x is position, <span class="arithmatex">\(\dot{x}\)</span> is velocity, and <span class="arithmatex">\(\ddot{x}\)</span> is acceleration. <span class="arithmatex">\(m\)</span> is mass, <span class="arithmatex">\(k\)</span> is a spring constant, and <span class="arithmatex">\(b\)</span> is a viscous damping term.</p>
 <h2 id="example-code-snippet">Example code snippet</h2>
 <p>I've set the damping to 10 so that the effect of spring force restitution is more readily apparent.</p>
-<div class="highlight"><pre><span></span><code>      <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;joint&quot;</span> <span class="na">type=</span><span class="s">&quot;revolute&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;parent&gt;</span>world<span class="nt">&lt;/parent&gt;</span>
-        <span class="nt">&lt;child&gt;</span>rod<span class="nt">&lt;/child&gt;</span>
-        <span class="nt">&lt;pose</span> <span class="na">relative_to=</span><span class="s">&quot;base_link&quot;</span><span class="nt">&gt;</span>0 0 0 0 0 0<span class="nt">&lt;/pose&gt;</span>
-        <span class="nt">&lt;axis&gt;</span>
-          <span class="nt">&lt;xyz&gt;</span>1 0 0<span class="nt">&lt;/xyz&gt;</span>
-          <span class="nt">&lt;dynamics&gt;</span>
-            <span class="nt">&lt;damping&gt;</span>10<span class="nt">&lt;/damping&gt;</span>
-            <span class="nt">&lt;spring_reference&gt;</span>-0.785398163397<span class="nt">&lt;/spring_reference&gt;</span>
-            <span class="nt">&lt;spring_stiffness&gt;</span>10.0<span class="nt">&lt;/spring_stiffness&gt;</span>
-          <span class="nt">&lt;/dynamics&gt;</span>
-          <span class="nt">&lt;limit&gt;</span>
-            <span class="nt">&lt;lower&gt;</span>-1e+16<span class="nt">&lt;/lower&gt;</span>
-            <span class="nt">&lt;upper&gt;</span>1e+16<span class="nt">&lt;/upper&gt;</span>
-          <span class="nt">&lt;/limit&gt;</span>
-        <span class="nt">&lt;/axis&gt;</span>
-      <span class="nt">&lt;/joint&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="w">      </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;joint&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;revolute&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;parent&gt;</span>world<span class="nt">&lt;/parent&gt;</span>
+<span class="w">        </span><span class="nt">&lt;child&gt;</span>rod<span class="nt">&lt;/child&gt;</span>
+<span class="w">        </span><span class="nt">&lt;pose</span><span class="w"> </span><span class="na">relative_to=</span><span class="s">&quot;base_link&quot;</span><span class="nt">&gt;</span>0<span class="w"> </span>0<span class="w"> </span>0<span class="w"> </span>0<span class="w"> </span>0<span class="w"> </span>0<span class="nt">&lt;/pose&gt;</span>
+<span class="w">        </span><span class="nt">&lt;axis&gt;</span>
+<span class="w">          </span><span class="nt">&lt;xyz&gt;</span>1<span class="w"> </span>0<span class="w"> </span>0<span class="nt">&lt;/xyz&gt;</span>
+<span class="w">          </span><span class="nt">&lt;dynamics&gt;</span>
+<span class="w">            </span><span class="nt">&lt;damping&gt;</span>10<span class="nt">&lt;/damping&gt;</span>
+<span class="w">            </span><span class="nt">&lt;spring_reference&gt;</span>-0.785398163397<span class="nt">&lt;/spring_reference&gt;</span>
+<span class="w">            </span><span class="nt">&lt;spring_stiffness&gt;</span>10.0<span class="nt">&lt;/spring_stiffness&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/dynamics&gt;</span>
+<span class="w">          </span><span class="nt">&lt;limit&gt;</span>
+<span class="w">            </span><span class="nt">&lt;lower&gt;</span>-1e+16<span class="nt">&lt;/lower&gt;</span>
+<span class="w">            </span><span class="nt">&lt;upper&gt;</span>1e+16<span class="nt">&lt;/upper&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/limit&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/axis&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/joint&gt;</span>
 </code></pre></div>
 <h2 id="comparison">Comparison</h2>
 <p><img alt="joint damping gazebo" src="media/jointspring_gazebo.gif" /></p>
