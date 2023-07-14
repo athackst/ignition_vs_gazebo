@@ -7,13 +7,6 @@
 			"WORKSPACE": "${containerWorkspaceFolder}"
 		}
 	},
-	"settings": {
-		"terminal.integrated.profiles.linux": {
-			"bash": {
-				"path": "bash"
-			}
-		}
-	},
 	"runArgs": [
 		"--privileged", // For joystick tests
 		"--network=host", // For ros comm ports
@@ -25,18 +18,27 @@
 		"--volume=/tmp/.X11-unix:/tmp/.X11-unix"
 	],
 	"containerEnv": {
-		"DISPLAY": "${localEnv:DISPLAY}", // For display sharing
+		"DISPLAY": "${localEnv:DISPLAY}" // For display sharing
 	},
-	"postCreateCommand": "sudo apt-get update && rosdep update && rosdep install --from-paths . --ignore-src -y",
+	// Local aliases settings as mounts
+	"mounts": [
+		"source=/${env:HOME}/.bash_aliases,target=/home/ros/.bash_aliases,type=bind,consistency=cached",
+		"source=/${env:HOME}/.aliases,target=/home/ros/.aliases,type=bind,consistency=cached"
+	],
+	"postCreateCommand": ".devcontainer/postcreate.sh",
 	"remoteUser": "ros",
-	"extensions": [
-		"dotjoshjohnson.xml",
-		"ms-iot.vscode-ros",
-		"ms-vscode.cpptools",
-		"redhat.vscode-yaml",
-		"streetsidesoftware.code-spell-checker",
-		"twxs.cmake",
-		"yzhang.markdown-all-in-one",
-		"znck.grammarly"
-	]
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dotjoshjohnson.xml",
+				"ms-iot.vscode-ros",
+				"ms-vscode.cpptools",
+				"redhat.vscode-yaml",
+				"streetsidesoftware.code-spell-checker",
+				"twxs.cmake",
+				"yzhang.markdown-all-in-one"
+			]
+		}
+	},
+
 }
