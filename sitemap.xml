@@ -2,57 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/</loc>
-         <lastmod>2023-09-04</lastmod>
+         <lastmod>2023-09-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/LICENSE/</loc>
-         <lastmod>2023-09-04</lastmod>
+         <lastmod>2023-09-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/wheel-drift/</loc>
-         <lastmod>2023-09-04</lastmod>
+         <lastmod>2023-09-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/joint-friction/</loc>
-         <lastmod>2023-09-04</lastmod>
+         <lastmod>2023-09-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/friction-pyramid/</loc>
-         <lastmod>2023-09-04</lastmod>
+         <lastmod>2023-09-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/inertia/</loc>
-         <lastmod>2023-09-04</lastmod>
+         <lastmod>2023-09-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/bounce/</loc>
-         <lastmod>2023-09-04</lastmod>
+         <lastmod>2023-09-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/wheel/</loc>
-         <lastmod>2023-09-04</lastmod>
+         <lastmod>2023-09-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/joint-spring/</loc>
-         <lastmod>2023-09-04</lastmod>
+         <lastmod>2023-09-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/joint-damping/</loc>
-         <lastmod>2023-09-04</lastmod>
+         <lastmod>2023-09-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/friction/</loc>
-         <lastmod>2023-09-04</lastmod>
+         <lastmod>2023-09-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
