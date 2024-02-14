@@ -35,5 +35,6 @@ jobs:
           directory: site
           ignore_urls: |
             https://fonts.gstatic.com
+            https://twitter.com/althack
             /http://sdformat.org/
             /https://gazebosim.org/
