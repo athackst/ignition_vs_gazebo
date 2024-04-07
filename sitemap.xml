@@ -16,11 +16,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://athackst.github.io/ignition_vs_gazebo/wheel-drift/</loc>
-         <lastmod>2024-04-07</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/joint-damping/</loc>
          <lastmod>2024-04-07</lastmod>
          <changefreq>daily</changefreq>
@@ -31,7 +26,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/joint-spring/</loc>
+         <lastmod>2024-04-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/bounce/</loc>
+         <lastmod>2024-04-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/friction-pyramid/</loc>
          <lastmod>2024-04-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -41,17 +46,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://athackst.github.io/ignition_vs_gazebo/joint-spring/</loc>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/wheel-drift/</loc>
          <lastmod>2024-04-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/joint-friction/</loc>
-         <lastmod>2024-04-07</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://athackst.github.io/ignition_vs_gazebo/friction-pyramid/</loc>
          <lastmod>2024-04-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
