@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://athackst.github.io/ignition_vs_gazebo/joint-damping/</loc>
-         <lastmod>2025-09-29</lastmod>
-    </url>
-    <url>
-         <loc>https://athackst.github.io/ignition_vs_gazebo/friction/</loc>
-         <lastmod>2025-09-29</lastmod>
-    </url>
-    <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/joint-spring/</loc>
-         <lastmod>2025-09-29</lastmod>
-    </url>
-    <url>
-         <loc>https://athackst.github.io/ignition_vs_gazebo/wheel-drift/</loc>
          <lastmod>2025-09-29</lastmod>
     </url>
     <url>
@@ -21,19 +9,19 @@
          <lastmod>2025-09-29</lastmod>
     </url>
     <url>
-         <loc>https://athackst.github.io/ignition_vs_gazebo/joint-friction/</loc>
-         <lastmod>2025-09-29</lastmod>
-    </url>
-    <url>
          <loc>https://athackst.github.io/ignition_vs_gazebo/bounce/</loc>
          <lastmod>2025-09-29</lastmod>
     </url>
     <url>
-         <loc>https://athackst.github.io/ignition_vs_gazebo/LICENSE/</loc>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/wheel-drift/</loc>
          <lastmod>2025-09-29</lastmod>
     </url>
     <url>
-         <loc>https://athackst.github.io/ignition_vs_gazebo/inertia/</loc>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/friction/</loc>
+         <lastmod>2025-09-29</lastmod>
+    </url>
+    <url>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/</loc>
          <lastmod>2025-09-29</lastmod>
     </url>
     <url>
@@ -41,7 +29,19 @@
          <lastmod>2025-09-29</lastmod>
     </url>
     <url>
-         <loc>https://athackst.github.io/ignition_vs_gazebo/</loc>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/joint-damping/</loc>
+         <lastmod>2025-09-29</lastmod>
+    </url>
+    <url>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/inertia/</loc>
+         <lastmod>2025-09-29</lastmod>
+    </url>
+    <url>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/joint-friction/</loc>
+         <lastmod>2025-09-29</lastmod>
+    </url>
+    <url>
+         <loc>https://athackst.github.io/ignition_vs_gazebo/LICENSE/</loc>
          <lastmod>2025-09-29</lastmod>
     </url>
 </urlset>
